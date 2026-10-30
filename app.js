@@ -83,15 +83,53 @@
       .map((entry) => entry.row);
   }
 
-  function buildMonths() {
-    const months = [];
-    for (let year = 2025; year <= 2026; year += 1) {
-      for (let month = 1; month <= 12; month += 1) {
-        const key = `${year}-${String(month).padStart(2, "0")}`;
-        if (key >= "2025-04" && key <= "2026-10") months.push(key);
-      }
+  function monthKey(value) {
+    return typeof value === "string" && /^\d{4}-\d{2}$/.test(value) ? value : "";
+  }
+
+  function yearKey(value) {
+    return typeof value === "string" && /^\d{4}/.test(value) ? value.slice(0, 4) : "";
+  }
+
+  function yearsInData(items) {
+    const years = new Set();
+    for (const item of items) {
+      const month = monthKey(item.month);
+      if (month) years.add(month.slice(0, 4));
+      const sortYear = yearKey(item.sort);
+      if (sortYear) years.add(sortYear);
     }
-    return months;
+    return [...years].sort();
+  }
+
+  function monthsOfYear(year) {
+    const keys = [];
+    for (let month = 1; month <= 12; month += 1) {
+      keys.push(`${year}-${String(month).padStart(2, "0")}`);
+    }
+    return keys;
+  }
+
+  function currentMonthKey() {
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+  }
+
+  function monthSpan(items) {
+    const keys = items.map((item) => monthKey(item.month)).filter(Boolean).sort();
+    if (!keys.length) return "";
+    if (keys[0] === keys[keys.length - 1]) return keys[0];
+    return `${keys[0]} 至 ${keys[keys.length - 1]}`;
+  }
+
+  function applyFormat(template, n) {
+    return String(template == null ? "{n}" : template).replaceAll("{n}", String(n));
+  }
+
+  function chartNote(items, year) {
+    const plotted = items.filter((item) => INCIDENT_TYPES.includes(item.type) && monthKey(item.month).startsWith(`${year}-`)).length;
+    const undated = items.filter((item) => !monthKey(item.month) && yearKey(item.sort) === year).length;
+    return `${year} 年圖表計入 ${plotted} 則（該年另有 ${undated} 則月份未明未列入）；將游標移到或點選長條可查看當月事故。尚未找到有公開來源的 AI 設備運輸損壞（非竊盜）案例。`;
   }
 
 function countUp(node, target, ms, format) {
@@ -124,13 +162,25 @@ function countUp(node, target, ms, format) {
     panel.textContent = `無法載入資料：${error && error.message ? error.message : "請稍後再試"}。請確認 data/items.json、data/reports.json 與 data/meta.json 可被讀取。`;
   }
 
-  function renderMetrics(items) {
+  function renderMetrics(items, headlines) {
     const host = document.getElementById("metrics");
     const tiles = [
-      { target: items.length, format: (n) => n, label: "已收錄事故", detail: "2025-04 至 2026-10", color: "#000F47", ms: 1600 },
-      { target: 150, format: (n) => `US$${n}M+`, label: "2026 年 AI 設備竊盜損失", detail: "Overhaul 產業報告估計", color: "#002C77", ms: 1800 },
-      { target: 92, format: (n) => `${n}%`, label: "高價值科技貨竊案涉詐欺", detail: "Overhaul 產業報告", color: "#0B4BFF", ms: 1800 },
-      { target: 38, format: (n) => `US$${n}M`, label: "2026 單案最高損失", detail: "內華達州 Reno（Tom's Hardware）", color: "#95CAFF", ms: 1800 },
+      {
+        target: items.length,
+        format: (n) => String(n),
+        label: "已收錄事故",
+        detail: monthSpan(items) || "月份未明",
+        color: "#000F47",
+        ms: 1600,
+      },
+      ...(Array.isArray(headlines) ? headlines : []).map((tile) => ({
+        target: Number(tile.target) || 0,
+        format: (n) => applyFormat(tile.format, n),
+        label: tile.label || "",
+        detail: tile.detail || "",
+        color: tile.color || "#002C77",
+        ms: 1800,
+      })),
     ];
     host.replaceChildren();
     for (const tile of tiles) {
@@ -292,158 +342,213 @@ function countUp(node, target, ms, format) {
     show(true);
   }
 
-  function renderMonthChart(sortedItems) {
-    const data = buildMonths().map((key) => ({
-      key,
-      items: sortedItems.filter((item) => item.month === key && INCIDENT_TYPES.includes(item.type)),
-    }));
+  function renderMonthChart(items) {
+    const years = yearsInData(items);
+    let year = years[years.length - 1] || "";
     const host = document.getElementById("month-chart");
+    const note = document.getElementById("month-note");
     host.replaceChildren();
 
-    const legend = document.createElement("div");
-    legend.className = "legend";
-    for (const type of INCIDENT_TYPES) {
-      const span = document.createElement("span");
-      const dot = document.createElement("i");
-      dot.className = "dot";
-      dot.style.background = TYPE_COLORS[type];
-      span.append(dot, document.createTextNode(type));
-      legend.append(span);
+    const switcher = document.createElement("div");
+    switcher.className = "chips year-switch";
+    switcher.setAttribute("role", "toolbar");
+    switcher.setAttribute("aria-label", "選擇年份");
+    const chartBody = document.createElement("div");
+    host.append(switcher, chartBody);
+
+    function paintYearButtons() {
+      switcher.replaceChildren();
+      for (const value of years) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "chip";
+        button.style.setProperty("--chip", "#0B4BFF");
+        button.style.setProperty("--ink-on", "#FFFFFF");
+        button.textContent = value;
+        button.setAttribute("aria-pressed", value === year ? "true" : "false");
+        if (value === year) button.classList.add("is-on");
+        button.addEventListener("click", () => {
+          if (value === year) return;
+          year = value;
+          paintYearButtons();
+          paintChart();
+        });
+        switcher.append(button);
+      }
     }
 
-    const W = 400;
-    const H = 198;
-    const padX = 10;
-    const top = 22;
-    const bottom = 30;
-    const n = data.length;
-    const slot = (W - 2 * padX) / n;
-    const bw = slot * 0.62;
-    const max = Math.max(1, ...data.map((d) => d.items.length));
-    const ph = H - top - bottom;
+    function paintChart() {
+      note.textContent = year ? chartNote(items, year) : "";
+      const today = currentMonthKey();
+      const data = (year ? monthsOfYear(year) : []).map((key) => ({
+        key,
+        future: key > today,
+        items: items.filter((item) => item.month === key && INCIDENT_TYPES.includes(item.type)),
+      }));
+      chartBody.replaceChildren();
+      if (!data.length) return;
 
-    const svg = svgEl("svg");
-    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-    svg.setAttribute("width", "100%");
-    svg.setAttribute("role", "img");
-    svg.setAttribute("aria-label", "每月事故件數");
-    svg.style.fontFamily = "inherit";
-
-    const axis = svgEl("line");
-    axis.setAttribute("x1", String(padX));
-    axis.setAttribute("x2", String(W - padX));
-    axis.setAttribute("y1", String(H - bottom));
-    axis.setAttribute("y2", String(H - bottom));
-    axis.setAttribute("stroke", "#95CAFF");
-    svg.append(axis);
-
-    const detail = document.createElement("div");
-    detail.className = "month-detail";
-    detail.setAttribute("aria-live", "polite");
-    const cols = [];
-
-    data.forEach((bucket, i) => {
-      const count = bucket.items.length;
-      const h = (count / max) * ph;
-      const x = padX + i * slot + (slot - bw) / 2;
-      const g = svgEl("g");
-      g.style.cursor = "pointer";
-      const grow = svgEl("g");
-      grow.setAttribute("class", "bar-grow");
-      grow.style.animationDelay = `${i * 45}ms`;
-      let yTop = H - bottom;
+      const legend = document.createElement("div");
+      legend.className = "legend";
       for (const type of INCIDENT_TYPES) {
-        const k = bucket.items.filter((item) => item.type === type).length;
-        if (!k) continue;
-        const sh = (k / max) * ph;
-        yTop -= sh;
-        const rect = svgEl("rect");
-        rect.setAttribute("x", String(x));
-        rect.setAttribute("y", String(yTop));
-        rect.setAttribute("width", String(bw));
-        rect.setAttribute("height", String(Math.max(sh - 1, 0)));
-        rect.setAttribute("rx", "2");
-        rect.setAttribute("fill", TYPE_COLORS[type]);
-        grow.append(rect);
+        const span = document.createElement("span");
+        const dot = document.createElement("i");
+        dot.className = "dot";
+        dot.style.background = TYPE_COLORS[type];
+        span.append(dot, document.createTextNode(type));
+        legend.append(span);
       }
-      if (count > 0) g.append(grow);
 
-      let label = null;
-      if (count > 0) {
-        label = svgEl("text");
-        label.setAttribute("x", String(x + bw / 2));
-        label.setAttribute("y", String(H - bottom - h - 5));
-        label.setAttribute("text-anchor", "middle");
-        label.setAttribute("font-size", "12");
-        label.style.animation = `gx-fade 400ms ease-out ${700 + i * 45}ms both`;
-        label.textContent = String(count);
-        g.append(label);
-      }
-      if (i % 6 === 0 || i === n - 1) {
+      const W = 360;
+      const H = 188;
+      const padX = 6;
+      const top = 20;
+      const bottom = 28;
+      const n = data.length;
+      const slot = (W - 2 * padX) / n;
+      const bw = Math.max(slot * 0.62, 8);
+      const max = Math.max(1, ...data.map((d) => d.items.length));
+      const ph = H - top - bottom;
+
+      const svg = svgEl("svg");
+      svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+      svg.setAttribute("width", "100%");
+      svg.setAttribute("role", "img");
+      svg.setAttribute("aria-label", `${year} 年每月事故件數`);
+      svg.style.fontFamily = "inherit";
+
+      const axis = svgEl("line");
+      axis.setAttribute("x1", String(padX));
+      axis.setAttribute("x2", String(W - padX));
+      axis.setAttribute("y1", String(H - bottom));
+      axis.setAttribute("y2", String(H - bottom));
+      axis.setAttribute("stroke", "#95CAFF");
+      svg.append(axis);
+
+      const detail = document.createElement("div");
+      detail.className = "month-detail";
+      detail.setAttribute("aria-live", "polite");
+      const cols = [];
+
+      data.forEach((bucket, i) => {
+        const count = bucket.items.length;
+        const h = (count / max) * ph;
+        const x = padX + i * slot + (slot - bw) / 2;
+        const g = svgEl("g");
+        g.style.cursor = "pointer";
+        const tip = svgEl("title");
+        tip.textContent = `${Number(bucket.key.slice(5))}月`;
+        g.append(tip);
+        const grow = svgEl("g");
+        grow.setAttribute("class", "bar-grow");
+        grow.style.animationDelay = `${i * 40}ms`;
+        let yTop = H - bottom;
+        for (const type of INCIDENT_TYPES) {
+          const k = bucket.items.filter((item) => item.type === type).length;
+          if (!k) continue;
+          const sh = (k / max) * ph;
+          yTop -= sh;
+          const rect = svgEl("rect");
+          rect.setAttribute("x", String(x));
+          rect.setAttribute("y", String(yTop));
+          rect.setAttribute("width", String(bw));
+          rect.setAttribute("height", String(Math.max(sh - 1, 0)));
+          rect.setAttribute("rx", "2");
+          rect.setAttribute("fill", TYPE_COLORS[type]);
+          grow.append(rect);
+        }
+        if (count > 0) g.append(grow);
+
+        let label = null;
+        if (!bucket.future) {
+          label = svgEl("text");
+          label.setAttribute("x", String(x + bw / 2));
+          label.setAttribute("y", String(count > 0 ? H - bottom - h - 5 : H - bottom - 8));
+          label.setAttribute("text-anchor", "middle");
+          label.setAttribute("font-size", "11");
+          label.textContent = String(count);
+          g.append(label);
+        }
         const tick = svgEl("text");
         tick.setAttribute("x", String(x + bw / 2));
         tick.setAttribute("y", String(H - 8));
         tick.setAttribute("text-anchor", "middle");
         tick.setAttribute("font-size", "11");
-        tick.setAttribute("fill", "#334155");
-        tick.textContent = bucket.key.slice(2);
+        tick.setAttribute("fill", bucket.future ? "#7A90B0" : "#334155");
+        tick.textContent = String(Number(bucket.key.slice(5)));
         g.append(tick);
-      }
-      const hit = svgEl("rect");
-      hit.setAttribute("x", String(padX + i * slot));
-      hit.setAttribute("y", "0");
-      hit.setAttribute("width", String(slot));
-      hit.setAttribute("height", String(H));
-      hit.setAttribute("fill", "transparent");
-      g.append(hit);
-      g.addEventListener("mouseenter", () => setActive(i));
-      g.addEventListener("click", () => setActive(i));
-      svg.append(g);
-      cols.push({ grow: count > 0 ? grow : null, label });
-    });
-
-    function renderDetail(bucket) {
-      detail.replaceChildren();
-      const title = document.createElement("div");
-      title.className = "month-detail-title";
-      title.textContent = `${bucket.key}：${bucket.items.length} 則事故`;
-      detail.append(title);
-      for (const item of bucket.items) {
-        const row = document.createElement("div");
-        row.className = "month-item";
-        const dot = document.createElement("i");
-        dot.className = "dot";
-        dot.style.background = TYPE_COLORS[item.type] || "#0B4BFF";
-        const text = document.createElement("span");
-        text.textContent = `${item.date}　${item.place}｜${item.cargo}｜${item.value}`;
-        row.append(dot, text);
-        detail.append(row);
-      }
-    }
-
-    function setActive(i) {
-      cols.forEach((col, idx) => {
-        const on = idx === i;
-        if (col.grow) col.grow.style.opacity = on ? "1" : "0.6";
-        if (col.label) col.label.setAttribute("fill", on ? "#0F172A" : "#5C6E8A");
+        const hit = svgEl("rect");
+        hit.setAttribute("x", String(padX + i * slot));
+        hit.setAttribute("y", "0");
+        hit.setAttribute("width", String(slot));
+        hit.setAttribute("height", String(H));
+        hit.setAttribute("fill", "transparent");
+        g.append(hit);
+        g.addEventListener("mouseenter", () => setActive(i));
+        g.addEventListener("click", () => setActive(i));
+        svg.append(g);
+        cols.push({ grow: count > 0 ? grow : null, label });
       });
-      renderDetail(data[i]);
+
+      function renderDetail(bucket) {
+        detail.replaceChildren();
+        const title = document.createElement("div");
+        title.className = "month-detail-title";
+        title.textContent = bucket.future
+          ? `${bucket.key}：尚未到來`
+          : `${bucket.key}：${bucket.items.length} 則事故`;
+        detail.append(title);
+        for (const item of bucket.items) {
+          const row = document.createElement("div");
+          row.className = "month-item";
+          const dot = document.createElement("i");
+          dot.className = "dot";
+          dot.style.background = TYPE_COLORS[item.type] || "#0B4BFF";
+          const text = document.createElement("span");
+          text.textContent = `${item.date}　${item.place}｜${item.cargo}｜${item.value}`;
+          row.append(dot, text);
+          detail.append(row);
+        }
+      }
+
+      function setActive(i) {
+        cols.forEach((col, idx) => {
+          const on = idx === i;
+          if (col.grow) col.grow.style.opacity = on ? "1" : "0.6";
+          if (col.label) col.label.setAttribute("fill", on ? "#0F172A" : "#5C6E8A");
+        });
+        renderDetail(data[i]);
+      }
+
+      const sr = document.createElement("ul");
+      sr.className = "sr-only";
+      for (const bucket of data) {
+        const li = document.createElement("li");
+        li.textContent = bucket.future ? `${bucket.key}：尚未到來` : `${bucket.key}：${bucket.items.length} 則`;
+        sr.append(li);
+      }
+
+      chartBody.append(legend, svg, detail, sr);
+      let last = data.findIndex((bucket) => !bucket.future);
+      if (last < 0) last = 0;
+      data.forEach((bucket, i) => {
+        if (bucket.items.length > 0) last = i;
+      });
+      setActive(last);
     }
 
-    const sr = document.createElement("ul");
-    sr.className = "sr-only";
-    for (const bucket of data) {
+    paintYearButtons();
+    paintChart();
+  }
+
+  function renderTrends(trends) {
+    const list = document.getElementById("trends");
+    list.replaceChildren();
+    for (const text of trends || []) {
       const li = document.createElement("li");
-      li.textContent = `${bucket.key}：${bucket.items.length} 則`;
-      sr.append(li);
+      li.textContent = text;
+      list.append(li);
     }
-
-    host.append(legend, svg, detail, sr);
-    let last = 0;
-    data.forEach((bucket, i) => {
-      if (bucket.items.length > 0) last = i;
-    });
-    setActive(last);
   }
 
   function renderTypeBars(items) {
@@ -709,19 +814,20 @@ function countUp(node, target, ms, format) {
 
     const sorted = bySortDesc(items);
     const latestList = sorted.filter((item) => INCIDENT_TYPES.includes(item.type)).slice(0, 6);
-    const incidentCount = items.filter((item) => INCIDENT_TYPES.includes(item.type)).length;
-
-    document.getElementById("summary").textContent =
-      `彙整 2025 年 4 月至今、與 AI 伺服器、GPU 與晶片、資料中心設備相關的運輸竊盜、劫車、倉儲竊盜與追回案件共 ${items.length} 則，另整理 ${reports.length} 則產業報告與保險市場動態，每則均附原始來源連結。`;
+    const claims = items.filter((item) => item.type === "理賠與訴訟").length;
+    const span = monthSpan(items);
+    const summaryText = `彙整與 AI 伺服器、GPU 與晶片、資料中心設備相關的運輸事故。${span ? `時間涵蓋 ${span}。` : ""}收錄 ${items.length} 則事故（含 ${claims} 則理賠與訴訟），另整理 ${reports.length} 則產業報告與保險市場動態，每則均附原始來源連結。`;
+    document.getElementById("summary").textContent = summaryText;
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute("content", summaryText);
     const updated = document.getElementById("updated");
     updated.dateTime = meta.last_updated || "";
     updated.textContent = meta.last_updated || "";
-    document.getElementById("month-note").textContent =
-      `僅計入可確認月份的事故（共 ${incidentCount} 則，日期未公開者未計入）；將游標移到或點選長條可查看當月事故。尚未找到有公開來源的 AI 設備運輸損壞（非竊盜）案例。`;
 
-    renderMetrics(items);
+    renderMetrics(items, meta.headlines);
+    renderTrends(meta.trends);
     renderTicker(latestList);
-    renderMonthChart(sorted);
+    renderMonthChart(items);
     renderTypeBars(items);
     renderIncidents(sorted, latestList[0] || null);
     renderReports(reports);

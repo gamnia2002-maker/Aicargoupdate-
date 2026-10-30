@@ -328,7 +328,13 @@ h2 {
   display: inline-block;
 }
 
-.month-chart svg { display: block; max-width: 100%; }
+.year-switch { margin: 0 0 12px; }
+
+.month-chart,
+#month-chart { max-width: 100%; }
+
+.month-chart svg,
+#month-chart svg { display: block; width: 100%; max-width: 100%; height: auto; }
 
 .bar-grow {
   transform-box: fill-box;
@@ -565,6 +571,40 @@ th:last-child { border-radius: 0 12px 0 0; }
 .link-card .title { color: var(--cobalt); font-weight: 700; }
 .link-card:hover .title { color: var(--bright); }
 .link-card .meta { color: var(--muted); font-size: 0.8125rem; }
+
+.disclaimer-teaser {
+  margin: 10px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.disclaimer-teaser a {
+  color: #d7ecff;
+  text-underline-offset: 3px;
+}
+
+.disclaimer-teaser a:hover { color: #ffffff; }
+
+.disclaimer {
+  margin: 8px 0 16px;
+  padding: 4px 2px 8px;
+  scroll-margin-top: 16px;
+  color: #f3f8ff;
+  font-size: 0.8125rem;
+  line-height: 1.75;
+}
+
+.disclaimer h2,
+.disclaimer h3 {
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+
+.disclaimer h3 { margin-top: 16px; }
+
+.disclaimer p { margin: 0; }
 
 .signature {
   margin: 0;

@@ -1,5 +1,33 @@
 {
   "last_updated": "2026-10-30",
+  "trends": [
+    "損失集中在少數八位數美元的貨載：Overhaul 稱 2026 年 AI 設備竊盜已逾 1.5 億美元，NBC 統計 6 月起逾 1 億美元；CargoNet 第二季整體貨物竊盜件數年減 26%，損失卻由 1.357 億升至 3.046 億美元。",
+    "手法由強取轉向詐欺：Overhaul 稱 92% 的高價值科技貨竊案涉及偽冒承運人、雙重委託或偽造文件；加州同時出現蓄意追撞護衛車的 bump-and-run，TAPA Americas 估計六至七成被竊貨物流出美國。",
+    "保險端正在補缺口：Lloyd's 的 Helix Consortium（運輸限額最高 7,500 萬美元）與 ATA 7.5 億美元機制已上市，但 Hunton 提醒保單條件仍有缺口，AGCS 對 Super Micro 的 Carmack 修正案代位求償顯示責任歸屬爭議。"
+  ],
+  "headlines": [
+    {
+      "target": 150,
+      "format": "US${n}M+",
+      "label": "2026 年 AI 設備竊盜損失",
+      "detail": "Overhaul 產業報告估計",
+      "color": "#002C77"
+    },
+    {
+      "target": 92,
+      "format": "{n}%",
+      "label": "高價值科技貨竊案涉詐欺",
+      "detail": "Overhaul 產業報告",
+      "color": "#0B4BFF"
+    },
+    {
+      "target": 38,
+      "format": "US${n}M",
+      "label": "2026 單案最高損失",
+      "detail": "內華達州 Reno（Tom's Hardware）",
+      "color": "#95CAFF"
+    }
+  ],
   "extra_sources": [
     {
       "title": "Highway thieves are spoofing GPS to steal millions in data center-bound cargo",
