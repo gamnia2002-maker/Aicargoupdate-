@@ -1,0 +1,95 @@
+{
+  "last_updated": "2026-10-30",
+  "trends": [
+    "損失集中在少數八位數美元的貨載：Overhaul 稱 2026 年 AI 設備竊盜已逾 1.5 億美元，NBC 統計 6 月起逾 1 億美元；CargoNet 第二季整體貨物竊盜件數年減 26%，損失卻由 1.357 億升至 3.046 億美元。",
+    "手法由強取轉向詐欺：Overhaul 稱 92% 的高價值科技貨竊案涉及偽冒承運人、雙重委託或偽造文件；加州同時出現蓄意追撞護衛車的 bump-and-run，TAPA Americas 估計六至七成被竊貨物流出美國。",
+    "保險端正在補缺口：Lloyd's 的 Helix Consortium（運輸限額最高 7,500 萬美元）與 ATA 7.5 億美元機制已上市，但 Hunton 提醒保單條件仍有缺口，AGCS 對 Super Micro 的 Carmack 修正案代位求償顯示責任歸屬爭議。"
+  ],
+  "headlines": [
+    {
+      "target": 150,
+      "format": "US${n}M+",
+      "label": "2026 年 AI 設備竊盜損失",
+      "detail": "Overhaul 產業報告估計",
+      "color": "#002C77"
+    },
+    {
+      "target": 92,
+      "format": "{n}%",
+      "label": "高價值科技貨竊案涉詐欺",
+      "detail": "Overhaul 產業報告",
+      "color": "#0B4BFF"
+    },
+    {
+      "target": 38,
+      "format": "US${n}M",
+      "label": "2026 單案最高損失",
+      "detail": "內華達州 Reno（Tom's Hardware）",
+      "color": "#95CAFF"
+    }
+  ],
+  "extra_sources": [
+    {
+      "title": "Highway thieves are spoofing GPS to steal millions in data center-bound cargo",
+      "site": "Ars Technica",
+      "date": "2026-10-26",
+      "href": "https://arstechnica.com/tech-policy/2026/10/highway-thieves-are-spoofing-gps-to-steal-millions-in-data-center-bound-cargo/"
+    },
+    {
+      "title": "Crooks have pulled off $100M in AI data center equipment heists since June",
+      "site": "New York Post",
+      "date": "2026-10-27",
+      "href": "https://nypost.com/2026/10/27/business/crooks-have-pulled-off-100m-in-ai-data-center-equipment-heists-since-june-report/"
+    },
+    {
+      "title": "Theft of AI equipment hits $150m in 2026, with fraud responsible for 92% of incidents",
+      "site": "DatacenterDynamics",
+      "date": "2026-10-26",
+      "href": "https://www.datacenterdynamics.com/en/news/theft-of-ai-equipment-hits-150m-in-2026-with-fraud-responsible-for-92-of-incidents-report/"
+    },
+    {
+      "title": "Data center gear is being hijacked in transit to the tune of hundreds of millions",
+      "site": "Tom's Hardware",
+      "date": "2026-10-27",
+      "href": "https://www.tomshardware.com/tech-industry/big-tech/data-center-gear-is-being-hijacked-in-transit-to-the-tune-of-hundreds-of-millions-grand-theft-gpu-thieves-hack-accounts-perform-hit-and-runs-spoof-gps-signals-and-funnel-hardware-to-china"
+    },
+    {
+      "title": "Cargo thieves are using fraud, not force, to take AI hardware",
+      "site": "OTR News",
+      "date": "2026-10-22",
+      "href": "https://otrnews.com/news/cargo-thieves-are-using-fraud-not-force-to-take-ai-hardware/"
+    },
+    {
+      "title": "Cargo thieves target high-value AI computer hardware",
+      "site": "DC Velocity",
+      "date": "2026-10-21",
+      "href": "https://www.dcvelocity.com/supply-chain/other-services/supply-chain-security/cargo-thieves-target-high-value-ai-computer-hardware"
+    },
+    {
+      "title": "AI Infrastructure Intel Report",
+      "site": "Overhaul",
+      "href": "https://www.over-haul.com/reports/ai-infrastructure-intel"
+    },
+    {
+      "title": "More than $150 million in AI equipment stolen this year, Overhaul report finds",
+      "site": "PR Newswire",
+      "href": "https://www.prnewswire.com/news-releases/more-than-150-million-in-ai-equipment-stolen-this-year-overhaul-report-finds-302915432.html"
+    },
+    {
+      "title": "Thieves stole Nvidia trailers; they got 20 tons of sand",
+      "site": "WIRED",
+      "href": "https://www.wired.com/story/thieves-stole-nvidia-trailers-they-got-20-tons-of-sand/"
+    },
+    {
+      "title": "Electronics cargo theft trends and supply chain risk",
+      "site": "BSI",
+      "href": "https://www.bsigroup.com/en-US/insights-and-media/insights/whitepapers/electronics-cargo-theft-trends-supply-chain-risk/"
+    },
+    {
+      "title": "TT Club and BSI 2025 Cargo Theft Report (PDF)",
+      "site": "TT Club",
+      "date": "2026-04-21",
+      "href": "https://www.ttclub.com/fileadmin/uploads/tt-club/Documents/Corporate_Literature/TT_Club_BSI_2025_Cargo_Theft_Report_FINAL.pdf"
+    }
+  ]
+}

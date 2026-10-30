@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000F47">
+  <title>AI 產品運輸保險事故新聞彙整</title>
+  <meta name="description" content="彙整與 AI 伺服器、GPU 與晶片、資料中心設備相關的運輸事故，以及產業報告與保險市場動態。">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">跳至內容</a>
+  <header class="site-header">
+    <div class="wrap">
+      <h1>AI 產品運輸保險事故新聞彙整</h1>
+      <p id="summary" class="summary">資料載入中…</p>
+      <p class="disclaimer-teaser"><a href="#disclaimer">本頁彙整公開網路資訊，僅供參考，詳見免責聲明</a></p>
+      <p class="updated">最後更新：<time id="updated" datetime=""></time></p>
+    </div>
+  </header>
+  <div id="loading" class="wrap">
+    <p class="panel loading-panel">資料載入中…</p>
+  </div>
+  <noscript>
+    <div class="wrap">
+      <p class="panel">此頁需要 JavaScript 才能載入 JSON 資料。請啟用 JavaScript 後重新整理。</p>
+    </div>
+  </noscript>
+  <main id="main" class="wrap" hidden>
+    <section class="panel" aria-label="指標">
+      <div id="metrics" class="metrics"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-latest">
+      <h2 id="h-latest">最新事故</h2>
+      <div id="ticker"></div>
+    </section>
+
+    <section class="panel callout" aria-labelledby="h-trends">
+      <h2 id="h-trends">重點趨勢</h2>
+      <ol id="trends" class="trends"></ol>
+    </section>
+
+    <section class="panel" aria-labelledby="h-month">
+      <h2 id="h-month">每月事故件數</h2>
+      <div id="month-chart"></div>
+      <p id="month-note" class="note"></p>
+    </section>
+
+    <section class="panel" aria-labelledby="h-types">
+      <h2 id="h-types">類型分布</h2>
+      <div id="type-bars"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-list">
+      <h2 id="h-list">事故明細</h2>
+      <div id="type-chips" class="chips" role="toolbar" aria-label="依類型篩選事故"></div>
+      <div id="incident-cards" class="incident-cards"></div>
+      <div id="incident-table-wrap" class="table-wrap"></div>
+      <p class="note">金額以原始報導為準，多為美元；日期標示「約」或月份者，代表來源未公布確切日期。</p>
+    </section>
+
+    <section class="panel" aria-labelledby="h-reports">
+      <h2 id="h-reports">產業報告與保險市場動態</h2>
+      <div id="report-seg" class="chips" role="toolbar" aria-label="依類別篩選報告"></div>
+      <div id="report-cards" class="report-grid"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-extra">
+      <h2 id="h-extra">延伸閱讀</h2>
+      <div id="extra-links" class="link-grid"></div>
+    </section>
+
+    <section id="disclaimer" class="disclaimer" aria-labelledby="h-disclaimer">
+      <h2 id="h-disclaimer">免責聲明</h2>
+      <p>本網頁內容彙整自公開媒體報導及網路資訊，僅供一般資訊參考。各則內容之正確性、完整性與時效性以原始來源為準，未經逐一查證，亦不保證其真實性；所列金額多為媒體或機構估計值。本網頁不構成保險、法律、理賠或投資建議，亦不影響任何保險契約之條款、承保範圍或理賠結果。讀者如需作成決策，請詳閱原始來源並諮詢專業顧問。因使用或信賴本網頁內容所生之任何損失，概不負責。各來源內容之著作權歸原媒體所有。</p>
+      <h3>Disclaimer</h3>
+      <p>This page is compiled from publicly available media reports and online sources for general information only. Accuracy, completeness and timeliness are subject to the original sources, which have not been independently verified; loss amounts are mostly estimates reported by media or third parties. Nothing on this page constitutes insurance, legal, claims or investment advice, nor does it affect the terms, coverage or claims outcome of any insurance policy. Please refer to the original sources and consult a qualified professional before making any decision. No liability is accepted for any loss arising from use of or reliance on this content. All source content remains the copyright of its respective publishers.</p>
+    </section>
+
+    <section class="panel signature-panel" aria-label="整理者">
+      <p class="signature">Gary Chen 整理</p>
+    </section>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+[
+  {
+    "sort": "2026-08-18",
+    "date": "2026-08-18",
+    "kind": "產業報告",
+    "scope": "亞太",
+    "title": "TAPA APAC 2026 第二季貨物犯罪情報報告",
+    "value": "125 件、直接損失逾 480 萬美元",
+    "summary": "涵蓋 13 個亞太國家，損失較去年同期（378 萬美元）增 27.3%；設施內竊盜占逾 57%，6 月暴力類手法首度超越侵入式手法，並點出釣魚、GPS 偽造與偽冒承運人等網路輔助詐欺。",
+    "site": "TAPA APAC",
+    "url": "https://tapa-apac.org/the-transported-asset-protection-association-asia-pacific-tapa-apac-releases-q2-2026-intelligence-report-revealing-a-strong-cargo-crime-shift/"
+  },
+  {
+    "sort": "2026-08-12",
+    "date": "2026-08-12",
+    "kind": "保險市場",
+    "scope": "全球",
+    "title": "Allianz Commercial：資料中心建置熱潮的風險與理賠趨勢",
+    "value": "資料中心保險市場 2030 年逾 240 億美元",
+    "summary": "資料中心相關理賠約 7 億歐元（約 8 億美元）中，火災占嚴重度逾五成；水損最常見，其次為蓄意行為（含犯罪與網路事件）。全球資料中心保險市場預估由約 110 億美元倍增。",
+    "site": "Allianz Commercial",
+    "url": "https://commercial.allianz.com/news-and-insights/news/data-centers-construction-risks-2026.html"
+  },
+  {
+    "sort": "2026-04-30",
+    "date": "2026-04-30",
+    "kind": "產業報告",
+    "scope": "美國",
+    "title": "FBI IC3 公共服務公告：網路輔助的策略性貨物竊盜激增",
+    "value": "2025 年美加損失近 7.25 億美元",
+    "summary": "警示駭客入侵經紀商與承運人帳號，在貨運撮合平台張貼假貨載並雙重轉包（double brokering），竄改提單與目的地後轉賣；2025 年每件平均損失增 36% 至 273,990 美元。",
+    "site": "FBI IC3",
+    "url": "https://www.ic3.gov/PSA/2026/PSA260430"
+  },
+  {
+    "sort": "2026-10-29",
+    "date": "2026-10-29",
+    "kind": "產業報告",
+    "scope": "墨西哥",
+    "title": "Overhaul：墨西哥電子產品竊案第三季升溫",
+    "value": "第三季占 1–9 月 44%",
+    "summary": "72% 集中在中部與 Bajío，83% 以曳引車為目標，73% 發生於行駛途中。",
+    "site": "T21",
+    "url": "https://t21.com.mx/durante-el-tercer-trimestre-se-intensifico-el-robo-de-electronicos-en-mexico/"
+  },
+  {
+    "sort": "2026-10-26",
+    "date": "2026-10-26",
+    "kind": "媒體調查",
+    "scope": "美國",
+    "title": "NBC 調查：資料中心設備竊案",
+    "value": "6 月起逾 1 億美元",
+    "summary": "手法含駭入貨運撮合帳號、偽造駕照與 GPS 座標，贓物拆解後經灰市轉售，部分流向中國。",
+    "site": "NBC News",
+    "url": "https://www.nbcnews.com/tech/security/grand-theft-ai-highway-thieves-are-stealing-millions-data-center-gear-rcna603733"
+  },
+  {
+    "sort": "2026-10-22",
+    "date": "2026-10-22",
+    "kind": "產業報告",
+    "scope": "美國",
+    "title": "Overhaul AI Infrastructure Intel 報告",
+    "value": "2026 年累計逾 1.5 億美元",
+    "summary": "較 2024 年增加 34%；92% 的高價值科技貨竊案使用詐欺手法，單次損失常超過 3,000 萬美元。",
+    "site": "Land Line",
+    "url": "https://landline.media/theft-by-deception-continues-to-drive-high-value-losses/"
+  },
+  {
+    "sort": "2026-08-27",
+    "date": "2026-08-27",
+    "kind": "產業報告",
+    "scope": "美國、加拿大",
+    "title": "The Loadstar：高科技貨物竊盜示警",
+    "value": "第二季損失逾 3 億美元",
+    "summary": "報導標題指出第二季高科技貨物竊盜損失突破 3 億美元，並向貨主示警。",
+    "site": "The Loadstar",
+    "url": "https://theloadstar.com/warning-to-shippers-after-theft-of-hi-tech-cargo-in-q2-passes-300m/"
+  },
+  {
+    "sort": "2026-08-23",
+    "date": "2026-08-23",
+    "kind": "媒體調查",
+    "scope": "美國加州",
+    "title": "T客邦：加州護衛車劫案與贓貨查扣",
+    "value": "追回逾 200 萬美元",
+    "summary": "繁中報導：兩起護衛車遭追撞後貨車與司機失蹤；追回貨物含 55 萬美元的 Meta 伺服器交換器。",
+    "site": "T客邦",
+    "url": "https://www.techbang.com/posts/132383-ai-data-center-hardware-hijacking-california"
+  },
+  {
+    "sort": "2026-08-14",
+    "date": "2026-08-14",
+    "kind": "產業報告",
+    "scope": "美國",
+    "title": "TAPA Americas：資料中心貨運竊案與 bump-and-run",
+    "value": "6/3 起 1.106 億美元",
+    "summary": "Scott Cornell 確認單案 200 萬至 3,800 萬美元，並估計美國被竊貨物約六至七成流出境外。",
+    "site": "FreightWaves",
+    "url": "https://www.freightwaves.com/news/nearly-111m-in-data-center-freight-stolen-as-thieves-test-bump-and-run-tactic"
+  },
+  {
+    "sort": "2026-08-06",
+    "date": "2026-08-06",
+    "kind": "產業報告",
+    "scope": "美國、加拿大",
+    "title": "Verisk CargoNet 2026 第二季竊盜趨勢",
+    "value": "Q2 估計 3.046 億美元",
+    "summary": "677 件，年減 26%，損失由 1.357 億美元增至 3.046 億美元；商業電郵入侵仍是主要入口。",
+    "site": "CargoNet",
+    "url": "https://www.cargonet.com/news-and-events/cargonet-in-the-media/2026-q2-theft-trends/"
+  },
+  {
+    "sort": "2026-07-01",
+    "date": "2026-07-01",
+    "kind": "產業報告",
+    "scope": "美國、加拿大",
+    "title": "CargoNet 七月四日假期警示",
+    "value": "上半年逾 3.59 億美元",
+    "summary": "平均單件價值約 341,518 美元，威脅包括遭入侵的 VoIP 電話系統與合規平台帳號。",
+    "site": "CargoNet",
+    "url": "https://www.cargonet.com/news-and-events/cargonet-in-the-media/july-4th-2026/"
+  },
+  {
+    "sort": "2026-06-01",
+    "date": "2026-06-01",
+    "kind": "保險市場",
+    "scope": "全球（Lloyd's）",
+    "title": "Navium 與 Overhaul 推出 Helix Consortium",
+    "value": "運輸限額最高 7,500 萬美元",
+    "summary": "另有 10 個 Lloyd's 辛迪加跟隨；倉儲限額 2,500 萬美元，涵蓋海空鐵公路運輸。",
+    "site": "Insurance Journal",
+    "url": "https://www.insurancejournal.com/news/international/2026/06/01/871974.htm"
+  },
+  {
+    "sort": "2026-06-01",
+    "date": "2026-06-01",
+    "kind": "保險市場",
+    "scope": "美國",
+    "title": "Hunton：貨物竊盜損失變大，保單可能有缺口",
+    "value": "保險理賠分析",
+    "summary": "分析貨物竊盜損失擴大後，保險方案可能存在的缺口。",
+    "site": "Hunton",
+    "url": "https://www.hunton.com/hunton-insurance-recovery-blog/why-todays-cargo-theft-losses-are-bigger-and-what-insurance-programs-may-be-missing"
+  },
+  {
+    "sort": "2026-04-23",
+    "date": "2026-04-23",
+    "kind": "產業報告",
+    "scope": "美國、加拿大",
+    "title": "Verisk CargoNet 2026 第一季竊盜趨勢",
+    "value": "Q1 估計 1.3158 億美元",
+    "summary": "767 件，年減 5.3%，手法以身分偽冒為主（竊取帳號憑證、收購承運人）。",
+    "site": "CargoNet",
+    "url": "https://www.cargonet.com/news-and-events/cargonet-in-the-media/2026-q1-theft-trends/"
+  },
+  {
+    "sort": "2026-04-21",
+    "date": "2026-04-21",
+    "kind": "產業報告",
+    "scope": "全球",
+    "title": "TT Club 與 BSI《2025 Cargo Theft Report》",
+    "value": "卡車占全球事件約 70%",
+    "summary": "22% 涉及內部人員；美國以加州 31%、德州 15%、伊利諾州 7% 最多。",
+    "site": "BSI",
+    "url": "https://www.bsigroup.com/en-US/insights-and-media/media-center/press-releases/2026/april/tt-club-and-bsi-report-rise-in-cargo-theft-as-criminal-tactics-evolve/"
+  },
+  {
+    "sort": "2026-03-09",
+    "date": "2026-03-09",
+    "kind": "媒體調查",
+    "scope": "美國",
+    "title": "華盛頓郵報：竊賊偷走數百萬美元的電腦硬體",
+    "value": "2025 年全美損失 7.25 億美元",
+    "summary": "（Yahoo 轉載）事件數持平約 3,600 件；TAPA 的 Cornell 估計實際損失為官方統計的 10 至 15 倍。",
+    "site": "Washington Post（Yahoo）",
+    "url": "https://www.yahoo.com/news/articles/cargo-thieves-stealing-millions-dollars-090000882.html"
+  },
+  {
+    "sort": "2026-01-22",
+    "date": "2026-01-22",
+    "kind": "產業報告",
+    "scope": "美國、加拿大",
+    "title": "Verisk CargoNet 2025 年度分析",
+    "value": "2025 年估計 7.25 億美元",
+    "summary": "全年損失估計 7.25 億美元，年增 60%。",
+    "site": "Verisk",
+    "url": "https://www.verisk.com/company/newsroom/cargo-theft-losses-surge-to-estimated-$725-million-in-2025-verisk-cargonet-analysis-reveals/"
+  },
+  {
+    "sort": "2026-01-13",
+    "date": "2026-01-13",
+    "kind": "保險市場",
+    "scope": "全球（London 市場）",
+    "title": "ATA 推出 AI 基礎設施保險機制",
+    "value": "7.5 億美元額度",
+    "summary": "十餘家再保險人與 Lloyd's 辛迪加支持，財產、硬體、貨運與網路險合一張保單。",
+    "site": "Insurance Journal",
+    "url": "https://www.insurancejournal.com/news/international/2026/01/13/854117.htm"
+  }
+]
