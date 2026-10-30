@@ -1,0 +1,67 @@
+{
+  "last_updated": "2026-10-30",
+  "extra_sources": [
+    {
+      "title": "Highway thieves are spoofing GPS to steal millions in data center-bound cargo",
+      "site": "Ars Technica",
+      "date": "2026-10-26",
+      "href": "https://arstechnica.com/tech-policy/2026/10/highway-thieves-are-spoofing-gps-to-steal-millions-in-data-center-bound-cargo/"
+    },
+    {
+      "title": "Crooks have pulled off $100M in AI data center equipment heists since June",
+      "site": "New York Post",
+      "date": "2026-10-27",
+      "href": "https://nypost.com/2026/10/27/business/crooks-have-pulled-off-100m-in-ai-data-center-equipment-heists-since-june-report/"
+    },
+    {
+      "title": "Theft of AI equipment hits $150m in 2026, with fraud responsible for 92% of incidents",
+      "site": "DatacenterDynamics",
+      "date": "2026-10-26",
+      "href": "https://www.datacenterdynamics.com/en/news/theft-of-ai-equipment-hits-150m-in-2026-with-fraud-responsible-for-92-of-incidents-report/"
+    },
+    {
+      "title": "Data center gear is being hijacked in transit to the tune of hundreds of millions",
+      "site": "Tom's Hardware",
+      "date": "2026-10-27",
+      "href": "https://www.tomshardware.com/tech-industry/big-tech/data-center-gear-is-being-hijacked-in-transit-to-the-tune-of-hundreds-of-millions-grand-theft-gpu-thieves-hack-accounts-perform-hit-and-runs-spoof-gps-signals-and-funnel-hardware-to-china"
+    },
+    {
+      "title": "Cargo thieves are using fraud, not force, to take AI hardware",
+      "site": "OTR News",
+      "date": "2026-10-22",
+      "href": "https://otrnews.com/news/cargo-thieves-are-using-fraud-not-force-to-take-ai-hardware/"
+    },
+    {
+      "title": "Cargo thieves target high-value AI computer hardware",
+      "site": "DC Velocity",
+      "date": "2026-10-21",
+      "href": "https://www.dcvelocity.com/supply-chain/other-services/supply-chain-security/cargo-thieves-target-high-value-ai-computer-hardware"
+    },
+    {
+      "title": "AI Infrastructure Intel Report",
+      "site": "Overhaul",
+      "href": "https://www.over-haul.com/reports/ai-infrastructure-intel"
+    },
+    {
+      "title": "More than $150 million in AI equipment stolen this year, Overhaul report finds",
+      "site": "PR Newswire",
+      "href": "https://www.prnewswire.com/news-releases/more-than-150-million-in-ai-equipment-stolen-this-year-overhaul-report-finds-302915432.html"
+    },
+    {
+      "title": "Thieves stole Nvidia trailers; they got 20 tons of sand",
+      "site": "WIRED",
+      "href": "https://www.wired.com/story/thieves-stole-nvidia-trailers-they-got-20-tons-of-sand/"
+    },
+    {
+      "title": "Electronics cargo theft trends and supply chain risk",
+      "site": "BSI",
+      "href": "https://www.bsigroup.com/en-US/insights-and-media/insights/whitepapers/electronics-cargo-theft-trends-supply-chain-risk/"
+    },
+    {
+      "title": "TT Club and BSI 2025 Cargo Theft Report (PDF)",
+      "site": "TT Club",
+      "date": "2026-04-21",
+      "href": "https://www.ttclub.com/fileadmin/uploads/tt-club/Documents/Corporate_Literature/TT_Club_BSI_2025_Cargo_Theft_Report_FINAL.pdf"
+    }
+  ]
+}
