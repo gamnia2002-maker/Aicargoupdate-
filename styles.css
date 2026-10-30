@@ -9,7 +9,10 @@
   --line: #95CAFF;
   --white: #ffffff;
   --radius: 20px;
-  --font: "PingFang TC", "Noto Sans TC", "Noto Sans CJK TC", "Microsoft JhengHei", "Heiti TC", "WenQuanYi Micro Hei", "Droid Sans Fallback", sans-serif;
+  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", "Heiti TC", "WenQuanYi Micro Hei", "Droid Sans Fallback", sans-serif;
+  --font-serif: "Inter", "Noto Serif TC", "Source Han Serif TC", "Songti TC", "PMingLiU", "MingLiU", "Noto Serif CJK TC", serif;
+  --font-figure: "Inter", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", "Heiti TC", sans-serif;
+  --font: "Inter", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", "Heiti TC", "WenQuanYi Micro Hei", "Droid Sans Fallback", sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --tick: 4500ms;
 }
@@ -23,7 +26,10 @@ body {
   min-height: 100vh;
   font-family: var(--font);
   font-size: 16px;
-  line-height: 1.7;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  font-synthesis: none;
   color: #e8f4ff;
   background:
     radial-gradient(1100px 560px at 0% -8%, rgba(11, 75, 255, 0.32), transparent 58%),
@@ -73,10 +79,11 @@ body::before {
 h1 {
   margin: 0 0 10px;
   color: #fff;
+  font-family: var(--font-serif);
   font-size: clamp(1.7rem, 4.4vw, 2.55rem);
   font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: 0.01em;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
 }
 
 .summary {
@@ -84,6 +91,8 @@ h1 {
   max-width: 68rem;
   color: #e8f4ff;
   font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.75;
 }
 
 .updated {
@@ -92,7 +101,12 @@ h1 {
   font-size: 0.9375rem;
 }
 
-.updated time { font-variant-numeric: tabular-nums; }
+.updated time {
+  font-family: var(--font-figure);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
 
 .panel {
   background: var(--panel);
@@ -108,8 +122,17 @@ h1 {
 h2 {
   margin: 0 0 14px;
   color: var(--midnight);
+  font-family: var(--font-serif);
   font-size: 1.3rem;
-  line-height: 1.35;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+}
+
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .note {
@@ -146,14 +169,18 @@ h2 {
   padding: 16px;
   border: 1px solid rgba(149, 202, 255, 0.45);
   min-height: 118px;
+  font-family: var(--font-figure);
+  letter-spacing: 0;
 }
 
 .metric .value {
+  font-family: var(--font-figure);
   font-size: clamp(1.7rem, 3vw, 2.2rem);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 .metric .label {
@@ -192,7 +219,10 @@ h2 {
 
 .ticker-count {
   color: rgba(255, 255, 255, 0.82);
+  font-family: var(--font-figure);
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 .ticker-pause {
@@ -334,6 +364,15 @@ h2 {
 #month-chart { max-width: 100%; }
 
 .month-chart svg,
+#month-chart svg {
+  font-family: var(--font-figure);
+  font-weight: 500;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.month-chart svg,
 #month-chart svg { display: block; width: 100%; max-width: 100%; height: auto; }
 
 .bar-grow {
@@ -380,7 +419,10 @@ h2 {
 .type-count {
   text-align: right;
   color: var(--muted);
+  font-family: var(--font-figure);
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
   min-width: 3.2em;
 }
 
@@ -416,6 +458,7 @@ h2 {
   color: var(--ink);
   font: inherit;
   font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
   transition: background 200ms var(--ease), border-color 200ms var(--ease), color 200ms var(--ease);
 }
@@ -474,8 +517,11 @@ h2 {
 .report-card h3,
 .link-card .title {
   margin: 8px 0 0;
+  font-family: var(--font-serif);
   font-size: 1.02rem;
-  line-height: 1.45;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
   color: var(--midnight);
 }
 
@@ -483,8 +529,12 @@ h2 {
 .report-value {
   margin-top: 6px;
   color: var(--cobalt);
+  font-family: var(--font-figure);
   font-weight: 700;
   font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: 0;
 }
 
 .card-summary,
@@ -524,8 +574,12 @@ table {
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
+  font-family: var(--font-figure);
   font-size: 0.875rem;
   line-height: 1.55;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 .table-wrap th,
@@ -568,7 +622,7 @@ th:last-child { border-radius: 0 12px 0 0; }
   box-shadow: 0 10px 22px rgba(0, 15, 71, 0.12);
 }
 
-.link-card .title { color: var(--cobalt); font-weight: 700; }
+.link-card .title { color: var(--cobalt); font-family: var(--font-serif); font-weight: 600; }
 .link-card:hover .title { color: var(--bright); }
 .link-card .meta { color: var(--muted); font-size: 0.8125rem; }
 
