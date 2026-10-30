@@ -415,7 +415,9 @@ function countUp(node, target, ms, format) {
       svg.setAttribute("width", "100%");
       svg.setAttribute("role", "img");
       svg.setAttribute("aria-label", `${year} 年每月事故件數`);
-      svg.style.fontFamily = "inherit";
+      svg.style.fontFamily = "var(--font-figure)";
+      svg.style.fontVariantNumeric = "tabular-nums";
+      svg.style.fontFeatureSettings = '"tnum" 1';
 
       const axis = svgEl("line");
       axis.setAttribute("x1", String(padX));
