@@ -13,65 +13,80 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip" href="#main">跳至內容</a>
+  <a class="skip" href="#main" data-i18n="skip">跳至內容</a>
   <header class="site-header">
-    <div class="wrap">
-      <h1>AI 產品運輸保險事故新聞彙整</h1>
-      <p id="summary" class="summary">資料載入中…</p>
-      <p class="disclaimer-teaser"><a href="#disclaimer">本頁彙整公開網路資訊，僅供參考，詳見免責聲明</a></p>
-      <p class="updated">最後更新：<time id="updated" datetime=""></time></p>
+    <div class="wrap header-wrap">
+      <div class="lang-switch" role="group" aria-label="語言 / Language">
+        <button type="button" data-lang="zh" aria-pressed="true" lang="zh-Hant">中</button>
+        <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+      <h1 data-i18n="title">AI 產品運輸保險事故新聞彙整</h1>
+      <p id="summary" class="summary" data-i18n="loading">資料載入中…</p>
+      <p class="disclaimer-teaser"><a href="#disclaimer" data-i18n="teaser">本頁彙整公開網路資訊，僅供參考，詳見免責聲明</a></p>
+      <p class="updated"><span data-i18n="updatedLabel">最後更新：</span><time id="updated" datetime=""></time></p>
     </div>
   </header>
   <div id="loading" class="wrap">
-    <p class="panel loading-panel">資料載入中…</p>
+    <p class="panel loading-panel" data-i18n="loading">資料載入中…</p>
   </div>
   <noscript>
     <div class="wrap">
-      <p class="panel">此頁需要 JavaScript 才能載入 JSON 資料。請啟用 JavaScript 後重新整理。</p>
+      <p class="panel">此頁需要 JavaScript 才能載入 JSON 資料。請啟用 JavaScript 後重新整理。 This page needs JavaScript to load its data. Please enable JavaScript and reload.</p>
     </div>
   </noscript>
   <main id="main" class="wrap" hidden>
-    <section class="panel" aria-label="指標">
+    <section class="panel" aria-label="指標" data-i18n-aria="metricsAria">
       <div id="metrics" class="metrics"></div>
     </section>
 
     <section class="panel" aria-labelledby="h-latest">
-      <h2 id="h-latest">最新事故</h2>
+      <h2 id="h-latest" data-i18n="hLatest">最新事故</h2>
       <div id="ticker"></div>
     </section>
 
     <section class="panel callout" aria-labelledby="h-trends">
-      <h2 id="h-trends">重點趨勢</h2>
+      <h2 id="h-trends" data-i18n="hTrends">重點趨勢</h2>
       <ol id="trends" class="trends"></ol>
     </section>
 
     <section class="panel" aria-labelledby="h-month">
-      <h2 id="h-month">每月事故件數</h2>
+      <h2 id="h-month" data-i18n="hMonth">每月事故件數</h2>
       <div id="month-chart"></div>
       <p id="month-note" class="note"></p>
     </section>
 
     <section class="panel" aria-labelledby="h-types">
-      <h2 id="h-types">類型分布</h2>
+      <h2 id="h-types" data-i18n="hTypes">類型分布</h2>
       <div id="type-bars"></div>
     </section>
 
+    <section class="panel" id="map-panel" aria-labelledby="h-map">
+      <h2 id="h-map" data-i18n="hMap">美國事故地圖</h2>
+      <p id="map-status" class="note" hidden></p>
+      <div id="map-canvas" class="map-canvas"></div>
+      <div id="map-legend" class="map-legend"></div>
+      <div id="map-unmapped" class="map-unmapped"></div>
+      <div id="map-rank" class="chips map-rank" role="toolbar" aria-label="依州別選取事故" data-i18n-aria="mapRankAria"></div>
+      <div id="map-selected" class="map-selected" aria-live="polite"></div>
+      <ul id="map-sr" class="sr-only"></ul>
+    </section>
+
     <section class="panel" aria-labelledby="h-list">
-      <h2 id="h-list">事故明細</h2>
-      <div id="type-chips" class="chips" role="toolbar" aria-label="依類型篩選事故"></div>
+      <h2 id="h-list" data-i18n="hList">事故明細</h2>
+      <div id="type-chips" class="chips" role="toolbar" aria-label="依類型篩選事故" data-i18n-aria="typeFilterAria"></div>
       <div id="incident-cards" class="incident-cards"></div>
       <div id="incident-table-wrap" class="table-wrap"></div>
-      <p class="note">金額以原始報導為準，多為美元；日期標示「約」或月份者，代表來源未公布確切日期。</p>
+      <p class="note" data-i18n="listNote">金額以原始報導為準，多為美元；日期標示「約」或月份者，代表來源未公布確切日期。</p>
     </section>
 
     <section class="panel" aria-labelledby="h-reports">
-      <h2 id="h-reports">產業報告與保險市場動態</h2>
-      <div id="report-seg" class="chips" role="toolbar" aria-label="依類別篩選報告"></div>
+      <h2 id="h-reports" data-i18n="hReports">產業報告與保險市場動態</h2>
+      <div id="report-seg" class="chips" role="toolbar" aria-label="依類別篩選報告" data-i18n-aria="kindFilterAria"></div>
       <div id="report-cards" class="report-grid"></div>
     </section>
 
     <section class="panel" aria-labelledby="h-extra">
-      <h2 id="h-extra">延伸閱讀</h2>
+      <h2 id="h-extra" data-i18n="hExtra">延伸閱讀</h2>
       <div id="extra-links" class="link-grid"></div>
     </section>
 
@@ -82,10 +97,13 @@
       <p>This page is compiled from publicly available media reports and online sources for general information only. Accuracy, completeness and timeliness are subject to the original sources, which have not been independently verified; loss amounts are mostly estimates reported by media or third parties. Nothing on this page constitutes insurance, legal, claims or investment advice, nor does it affect the terms, coverage or claims outcome of any insurance policy. Please refer to the original sources and consult a qualified professional before making any decision. No liability is accepted for any loss arising from use of or reliance on this content. All source content remains the copyright of its respective publishers.</p>
     </section>
 
-    <section class="panel signature-panel" aria-label="整理者">
+    <section class="panel signature-panel" aria-label="整理者" data-i18n-aria="signatureAria">
       <p class="signature">Gary Chen 整理</p>
     </section>
   </main>
+  <script src="vendor/d3-array.min.js" defer></script>
+  <script src="vendor/d3-geo.min.js" defer></script>
+  <script src="vendor/topojson-client.min.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>

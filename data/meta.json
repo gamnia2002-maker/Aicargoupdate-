@@ -91,5 +91,26 @@
       "date": "2026-04-21",
       "href": "https://www.ttclub.com/fileadmin/uploads/tt-club/Documents/Corporate_Literature/TT_Club_BSI_2025_Cargo_Theft_Report_FINAL.pdf"
     }
-  ]
+  ],
+  "en": {
+    "trends": [
+      "Losses are concentrated in a few eight-figure US dollar loads. Overhaul says AI equipment theft has passed US$150 million in 2026, and NBC counts more than US$100 million since June. CargoNet reports that overall cargo theft incidents fell 26% year over year in Q2, while losses rose from US$135.7 million to US$304.6 million.",
+      "Methods are shifting from force to fraud. Overhaul says 92% of high-value tech cargo thefts involve carrier impersonation, double brokering or forged documents. In California, deliberate bump-and-run rammings of escort vehicles have also appeared, and TAPA Americas estimates that 60% to 70% of stolen cargo leaves the United States.",
+      "Insurance is closing the gaps. Lloyd's Helix Consortium (transit limits of up to US$75 million) and the ATA US$750 million facility are now on the market, but Hunton cautions that policy terms still leave gaps, and AGCS's Carmack Amendment subrogation claim against Super Micro shows disputes over liability."
+    ],
+    "headlines": [
+      {
+        "label": "AI equipment theft losses in 2026",
+        "detail": "Estimate from the Overhaul industry report"
+      },
+      {
+        "label": "High-value tech cargo thefts involving fraud",
+        "detail": "Overhaul industry report"
+      },
+      {
+        "label": "Highest single-case loss in 2026",
+        "detail": "Reno, Nevada (Tom's Hardware)"
+      }
+    ]
+  }
 }

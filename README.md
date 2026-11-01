@@ -43,6 +43,10 @@ python3 -m http.server 8080
 | `summary` | 摘要。 |
 | `site` | 來源名稱。 |
 | `url` | 來源連結，需為 `http` 或 `https`。 |
+| `en` | 英文版欄位（選填）：`date`、`area`、`place`、`cargo`、`type`、`value`、`summary`。缺少時英文模式退回中文。 |
+| `geo` | 地圖欄位（選填）：`mapped`、`states`、`origin`、`dest`、`point`、`note`。缺少時視為未標示。 |
+
+`en` 與 `geo` 的填法、範例與自我檢查清單見 [docs/EDITOR_GUIDE.md](docs/EDITOR_GUIDE.md)。`type` 的值永遠是上面的中文鍵（程式用它比對與上色），英文只影響顯示。
 
 `理賠與訴訟` 會出現在明細與類型分布，但不計入「最新事故」輪播與每月長條圖。只有 `month` 有值、且類型屬於前四類的資料才會計入每月長條圖。
 
@@ -80,6 +84,27 @@ python3 -m http.server 8080
 - `headlines`：頁首另外三張指標（損失、詐欺比例、單案最高）。每筆有 `target`（數字）、`format`（`{n}` 會換成整數，例如 `US${n}M+`）、`label`、`detail`、`color`。這三張不會跟著事故筆數自動改，要手動更新。
 
 JSON 不可加註解，也不可在最後一筆後面加逗號。存檔請用 UTF-8。
+
+## 中英文切換
+
+頁首右上角有「中／EN」切換鈕。語言的決定順序是：網址參數 `?lang=en` 或 `?lang=zh`，其次是瀏覽器 localStorage（key 為 `aicargo.lang`），最後預設中文。切換時不需重新整理，也會同步網址參數與 `<html lang>`。
+
+介面文字集中在 `app.js` 的 `I18N` 字典（`zh`、`en`）。資料的英文版放在各檔的 `en` 欄位：`items.json` 與 `reports.json` 每筆的 `en`，以及 `meta.json` 頂層的 `en`（`trends`、`headlines`）。英文文字不使用破折號。
+
+## 美國事故地圖
+
+「類型分布」之後有一張美國各州事故數地圖：州別依事故數分級上色，點州（或下方的州別排行 chips）可列出該州事故；有起訖點的事故畫成弧線，只有單一地點的事故畫成圓點。無法標示的事故（非美國、只寫「美國」、法院案件）會集中說明並可展開查看。作法詳見 [docs/MAP_APPROACH.md](docs/MAP_APPROACH.md)。
+
+## 第三方檔案與授權
+
+- `vendor/`：`d3-array`（ISC）、`d3-geo`（ISC）、`topojson-client`（ISC），皆為本機檔案，不使用 CDN。
+- `data/geo/us-states-albers-10m.json`：[us-atlas](https://github.com/topojson/us-atlas) 3.0.1（ISC，授權全文見 `data/geo/us-atlas.LICENSE.txt`）。
+- `data/geo/city_coords.json`：U.S. Census Bureau 2023 Gazetteer Files（Places），公有領域。
+
+## 文件
+
+- [docs/EDITOR_GUIDE.md](docs/EDITOR_GUIDE.md)：每日編輯 `items.json` 時，英文與地圖欄位的填寫規則。
+- [docs/MAP_APPROACH.md](docs/MAP_APPROACH.md)：地圖的作法、座標來源與授權。
 
 ## 免責聲明
 

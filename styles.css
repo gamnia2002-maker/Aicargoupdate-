@@ -76,6 +76,48 @@ body::before {
   padding: 36px 0 8px;
 }
 
+.header-wrap { position: relative; }
+
+.lang-switch {
+  position: absolute;
+  top: -12px;
+  right: 0;
+  z-index: 2;
+  display: inline-flex;
+  border: 1px solid var(--ice);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(0, 44, 119, 0.55);
+}
+
+.lang-switch button {
+  appearance: none;
+  min-width: 52px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  background: transparent;
+  color: #d7ecff;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.lang-switch button + button { border-left: 1px solid var(--ice); }
+.lang-switch button:hover { color: #fff; }
+.lang-switch button[aria-pressed="true"] { background: var(--bright); color: #fff; }
+.lang-switch button:focus-visible { outline-color: #fff; outline-offset: -3px; }
+
+@media (min-width: 641px) {
+  .header-wrap h1 { padding-right: 140px; }
+}
+
+@media (max-width: 640px) {
+  .lang-switch { position: static; display: flex; width: max-content; margin: 0 0 10px auto; }
+}
+
 h1 {
   margin: 0 0 10px;
   color: #fff;
@@ -768,4 +810,167 @@ th:last-child { border-radius: 0 12px 0 0; }
   .link-card,
   .chip,
   .ticker-dots button span { transition: none; }
+}
+
+/* ---- US incident map ---- */
+.map-canvas { margin-top: 12px; }
+
+.map-canvas svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: manipulation;
+}
+
+.map-state {
+  stroke: #fff;
+  stroke-width: 0.8;
+  stroke-linejoin: round;
+  cursor: pointer;
+  transition: filter 150ms var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .map-state:hover { filter: brightness(1.15); }
+}
+
+/* SVG paths get a bounding-box outline in Chrome, so focus and selection are drawn with stroke. */
+.map-state,
+.map-state:focus,
+.map-state:focus-visible { outline: none; }
+
+
+.map-outline {
+  fill: none;
+  stroke: var(--bright);
+  stroke-width: 3.2;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.map-count {
+  font-family: var(--font-figure);
+  font-size: 15px;
+  font-weight: 700;
+  pointer-events: none;
+  user-select: none;
+}
+
+.map-mark { pointer-events: none; transition: opacity 200ms var(--ease); }
+.map-mark circle { pointer-events: auto; cursor: pointer; }
+.map-mark.is-dim { opacity: 0.15; }
+
+.map-legend {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.map-legend .legend,
+.map-legend .note { margin: 0; }
+
+.map-scale {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.map-scale-label { font-weight: 600; color: var(--ink); }
+
+.map-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.map-swatch i {
+  width: 22px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 15, 71, 0.25);
+}
+
+.map-unmapped {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.map-unmapped:empty { display: none; }
+.map-unmapped .note { margin: 0; }
+.map-unmapped .map-list { width: 100%; }
+.map-unmapped .map-list[hidden] { display: none; }
+
+.map-rank { margin-top: 14px; }
+
+.map-selected { margin-top: 16px; scroll-margin-top: 12px; }
+.map-selected:empty { display: none; }
+
+.map-selected-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.map-selected-title {
+  margin: 0;
+  color: var(--cobalt);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.map-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+}
+
+@media (max-width: 640px) {
+  .map-count { font-size: 26px; }
+  .map-outline { stroke-width: 5; }
+  .map-state { stroke-width: 1.2; }
+}
+
+@media (max-width: 480px) {
+  .map-legend { gap: 8px; }
+
+  .map-legend .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  .map-legend .legend span { gap: 4px; }
+  .map-legend .legend svg { width: 22px; height: 10px; }
+
+  .map-scale { gap: 4px 10px; font-size: 0.8125rem; }
+  .map-swatch i { width: 18px; height: 12px; }
+
+  .map-rank .chip,
+  .map-selected-head .chip,
+  .map-unmapped-toggle { min-height: 44px; }
+}
+
+.map-focus-ring {
+  fill: none;
+  stroke: var(--bright);
+  stroke-width: 3.2;
+  stroke-dasharray: 7 4;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .map-focus-ring { stroke-width: 5; }
 }

@@ -1,0 +1,102 @@
+{
+  "_source": "U.S. Census Bureau 2023 Gazetteer Files, Places (national). Fields INTPTLAT / INTPTLONG (internal point, approximate city location). https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2023_Gazetteer/2023_Gaz_place_national.zip (public domain). Only cities named in data/items.json place fields are included.",
+  "_key": "\"City, ST\" (USPS state code)",
+  "cities": {
+    "Fremont, CA": {
+      "lat": 37.49446,
+      "lon": -121.94115,
+      "census_name": "Fremont city",
+      "geoid": "0626000"
+    },
+    "Reno, NV": {
+      "lat": 39.549097,
+      "lon": -119.849907,
+      "census_name": "Reno city",
+      "geoid": "3260600"
+    },
+    "Anaheim, CA": {
+      "lat": 33.855502,
+      "lon": -117.758657,
+      "census_name": "Anaheim city",
+      "geoid": "0602000"
+    },
+    "Mojave, CA": {
+      "lat": 35.014995,
+      "lon": -118.190209,
+      "census_name": "Mojave CDP",
+      "geoid": "0648452"
+    },
+    "Fayetteville, GA": {
+      "lat": 33.449099,
+      "lon": -84.472824,
+      "census_name": "Fayetteville city",
+      "geoid": "1328968"
+    },
+    "Olive Branch, MS": {
+      "lat": 34.955752,
+      "lon": -89.841153,
+      "census_name": "Olive Branch city",
+      "geoid": "2854040"
+    },
+    "Richardson, TX": {
+      "lat": 32.972291,
+      "lon": -96.708069,
+      "census_name": "Richardson city",
+      "geoid": "4861796"
+    },
+    "Fullerton, CA": {
+      "lat": 33.885716,
+      "lon": -117.928025,
+      "census_name": "Fullerton city",
+      "geoid": "0628000"
+    },
+    "Columbus, OH": {
+      "lat": 39.983938,
+      "lon": -82.984882,
+      "census_name": "Columbus city",
+      "geoid": "3918000"
+    },
+    "Mesa, AZ": {
+      "lat": 33.400626,
+      "lon": -111.716487,
+      "census_name": "Mesa city",
+      "geoid": "0446000"
+    },
+    "Chandler, AZ": {
+      "lat": 33.282765,
+      "lon": -111.851819,
+      "census_name": "Chandler city",
+      "geoid": "0412000"
+    },
+    "Katy, TX": {
+      "lat": 29.790915,
+      "lon": -95.840711,
+      "census_name": "Katy city",
+      "geoid": "4838476"
+    },
+    "Salt Lake City, UT": {
+      "lat": 40.776928,
+      "lon": -111.930991,
+      "census_name": "Salt Lake City city",
+      "geoid": "4967000"
+    },
+    "El Paso, TX": {
+      "lat": 31.84778,
+      "lon": -106.431106,
+      "census_name": "El Paso city",
+      "geoid": "4824000"
+    },
+    "San Jose, CA": {
+      "lat": 37.296011,
+      "lon": -121.814552,
+      "census_name": "San Jose city",
+      "geoid": "0668000"
+    },
+    "Las Vegas, NV": {
+      "lat": 36.233499,
+      "lon": -115.264037,
+      "census_name": "Las Vegas city",
+      "geoid": "3240000"
+    }
+  }
+}

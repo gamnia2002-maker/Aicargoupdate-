@@ -10,7 +10,23 @@
     "value": "約 R$250 萬（約 47 萬美元）",
     "summary": "貨物於海關放行前自機場貨運站失蹤；監視器拍到兩名外包堆高機人員搬離，另一名查驗人員在系統放行，報導指貨物標籤疑遭調換。序號比對發現一張於 OLX 轉售，賣家 10/21 遭逮後法院撤銷拘提，警方查扣該卡，其餘貨物仍下落不明；內部人員是否共謀尚未確認。",
     "site": "eeNews Europe",
-    "url": "https://www.eenewseurope.com/en/stolen-rtx-5090-brazil-airport/"
+    "url": "https://www.eenewseurope.com/en/stolen-rtx-5090-brazil-airport/",
+    "en": {
+      "date": "Approx. Sep 21, 2026 (reports differ on the date)",
+      "area": "Brazil",
+      "place": "Guarulhos International Airport cargo terminal, São Paulo, Brazil",
+      "cargo": "2 Zotac graphics cards (GPUs), including an RTX 5090, imported from the United States (not data center grade)",
+      "type": "Warehouse theft",
+      "value": "About R$2.5 million (about US$470,000)",
+      "summary": "The goods went missing from the airport cargo terminal before customs release. Surveillance video showed two outsourced forklift operators moving them away, and an inspector released them in the system; reports say the cargo labels may have been swapped. A serial number match found one card resold on OLX; after the seller was arrested on Oct 21, a court revoked the arrest warrant, and police seized the card. The remaining goods are still missing, and whether insiders colluded has not been confirmed."
+    },
+    "geo": {
+      "mapped": false,
+      "states": [],
+      "origin": null,
+      "dest": null,
+      "note": "地點在巴西，非美國，不上地圖"
+    }
   },
   {
     "sort": "2026-09-24",
@@ -23,7 +39,29 @@
     "value": "無（非 AI 硬體）",
     "summary": "兩輛拖車被拖離倉庫，當日在 Newark 尋獲；警方尚未證實竊賊動機與 NVIDIA 標誌有關。",
     "site": "FreightWaves",
-    "url": "https://www.freightwaves.com/news/thieves-steal-plusai-trailers-with-nvidia-branding-get-40000-pounds-of-sand-instead"
+    "url": "https://www.freightwaves.com/news/thieves-steal-plusai-trailers-with-nvidia-branding-get-40000-pounds-of-sand-instead",
+    "en": {
+      "date": "Sep 24, 2026",
+      "area": "United States",
+      "place": "Fremont, California",
+      "cargo": "PlusAI test trailers (loaded with 40,000 pounds of sand, one bearing an NVIDIA logo)",
+      "type": "Warehouse theft",
+      "value": "None (not AI hardware)",
+      "summary": "Two trailers were towed away from a warehouse and found the same day in Newark. Police have not confirmed that the thieves were motivated by the NVIDIA logo."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA"
+      ],
+      "origin": null,
+      "dest": null,
+      "point": {
+        "state": "CA",
+        "city": "Fremont"
+      },
+      "note": "單一地點"
+    }
   },
   {
     "sort": "2026-08-12",
@@ -36,7 +74,25 @@
     "value": "數百萬美元（報導未列明）",
     "summary": "兩起護衛車遭追撞或 PIT 攔停後，貨車與司機失蹤；報導指出尚未獲執法單位證實，兩案均涉近期轉手的承運人編號。",
     "site": "WIRED",
-    "url": "https://www.wired.com/story/the-worst-ive-ever-seen-cargo-thieves-are-turning-violent-in-pursuit-of-ai-hardware/"
+    "url": "https://www.wired.com/story/the-worst-ive-ever-seen-cargo-thieves-are-turning-violent-in-pursuit-of-ai-hardware/",
+    "en": {
+      "date": "Aug 12, 2026",
+      "area": "United States",
+      "place": "California (Silicon Valley toward Southern California)",
+      "cargo": "AI data center hardware",
+      "type": "Hijacking",
+      "value": "Several million US dollars (not specified in the report)",
+      "summary": "In two incidents, escort vehicles were rammed or stopped with a PIT maneuver, after which the trucks and drivers went missing. The report says law enforcement has not confirmed this, and both cases involve recently transferred carrier numbers."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA"
+      ],
+      "origin": null,
+      "dest": null,
+      "note": "僅寫加州，未列城市"
+    }
   },
   {
     "sort": "2026-07-15",
@@ -49,7 +105,29 @@
     "value": "3,800 萬美元",
     "summary": "2026 年單案損失最高的一件，手法與確切日期未公開。",
     "site": "Tom's Hardware",
-    "url": "https://www.tomshardware.com/tech-industry/big-tech/data-center-gear-is-being-hijacked-in-transit-to-the-tune-of-hundreds-of-millions-grand-theft-gpu-thieves-hack-accounts-perform-hit-and-runs-spoof-gps-signals-and-funnel-hardware-to-china"
+    "url": "https://www.tomshardware.com/tech-industry/big-tech/data-center-gear-is-being-hijacked-in-transit-to-the-tune-of-hundreds-of-millions-grand-theft-gpu-thieves-hack-accounts-perform-hit-and-runs-spoof-gps-signals-and-funnel-hardware-to-china",
+    "en": {
+      "date": "June to August 2026 (date not disclosed)",
+      "area": "United States",
+      "place": "Reno, Nevada",
+      "cargo": "Data center and high-tech equipment",
+      "type": "Cargo theft in transit",
+      "value": "US$38 million",
+      "summary": "The largest single-case loss of 2026. The method and exact date have not been disclosed."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "NV"
+      ],
+      "origin": null,
+      "dest": null,
+      "point": {
+        "state": "NV",
+        "city": "Reno"
+      },
+      "note": "單一地點"
+    }
   },
   {
     "sort": "2026-06-30",
@@ -62,7 +140,27 @@
     "value": "約 30 萬 + 約 100 萬美元",
     "summary": "兩輛贓車在芝加哥附近貨場尋獲，過程中使用了 GPS 追蹤器。",
     "site": "Tom's Hardware",
-    "url": "https://www.tomshardware.com/tech-industry/data-centers/cargo-thieves-target-ai-data-center-supplies-in-usd1-3-million-heists-usd300-000-worth-of-copper-wire-and-usd1-million-worth-of-equipment-recovered-outside-chicago"
+    "url": "https://www.tomshardware.com/tech-industry/data-centers/cargo-thieves-target-ai-data-center-supplies-in-usd1-3-million-heists-usd300-000-worth-of-copper-wire-and-usd1-million-worth-of-equipment-recovered-outside-chicago",
+    "en": {
+      "date": "Jun 30, 2026",
+      "area": "United States",
+      "place": "Cook County, Illinois (the stolen trucks were taken in Alabama and Florida respectively)",
+      "cargo": "Copper wire reels, data center equipment",
+      "type": "Recovery or seizure",
+      "value": "About US$300,000 plus about US$1 million",
+      "summary": "Two stolen trucks were found at a freight yard near Chicago, with GPS trackers used in the process."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "IL",
+        "AL",
+        "FL"
+      ],
+      "origin": null,
+      "dest": null,
+      "note": "Cook County 為郡，贓車失竊於阿拉巴馬州、佛州；不畫路線"
+    }
   },
   {
     "sort": "2026-06-29",
@@ -75,7 +173,23 @@
     "value": "近 500 萬美元（估計）",
     "summary": "Canadian Press 6/29 報導：一家經紀商約三個月前近十二車貨物消失，承運人僅有約六輛車卻接下十餘車貨，被視為警訊。",
     "site": "Truck News",
-    "url": "https://www.trucknews.com/transportation/ai-demand-and-tactics-drive-surge-in-cargo-theft/1003216208/"
+    "url": "https://www.trucknews.com/transportation/ai-demand-and-tactics-drive-surge-in-cargo-theft/1003216208/",
+    "en": {
+      "date": "Approx. Mar 2026",
+      "area": "United States",
+      "place": "United States (freight broker)",
+      "cargo": "Copper wire and electronic equipment for AI data centers (nearly twelve truckloads)",
+      "type": "Cargo theft in transit",
+      "value": "Nearly US$5 million (estimated)",
+      "summary": "Canadian Press reported on Jun 29 that nearly twelve truckloads of cargo vanished from a broker about three months earlier. The carrier had only about six trucks yet accepted more than a dozen loads, which was seen as a warning sign."
+    },
+    "geo": {
+      "mapped": false,
+      "states": [],
+      "origin": null,
+      "dest": null,
+      "note": "僅寫美國，未列州或城市"
+    }
   },
   {
     "sort": "2026-06-20",
@@ -88,7 +202,29 @@
     "value": "55 萬美元（三案合計逾 220 萬美元）",
     "summary": "買家通報後由 CHP 查獲；竊賊偽冒真實承運人並使用偽造文件。",
     "site": "WIRED",
-    "url": "https://www.wired.com/story/the-worst-ive-ever-seen-cargo-thieves-are-turning-violent-in-pursuit-of-ai-hardware/"
+    "url": "https://www.wired.com/story/the-worst-ive-ever-seen-cargo-thieves-are-turning-violent-in-pursuit-of-ai-hardware/",
+    "en": {
+      "date": "Jun 2026",
+      "area": "United States",
+      "place": "Anaheim, California warehouse",
+      "cargo": "Celestica server switches made for Meta (8 units)",
+      "type": "Recovery or seizure",
+      "value": "US$550,000 (more than US$2.2 million across the three cases)",
+      "summary": "Seized by the CHP after the buyer reported it. The thieves impersonated a real carrier and used forged documents."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA"
+      ],
+      "origin": null,
+      "dest": null,
+      "point": {
+        "state": "CA",
+        "city": "Anaheim"
+      },
+      "note": "單一地點"
+    }
   },
   {
     "sort": "2026-06-12",
@@ -101,7 +237,30 @@
     "value": "1,000 萬美元",
     "summary": "SUV 撞擊護衛車讓拖車駛離，調查人員認為該貨 GPS 座標遭偽造。",
     "site": "NY Post（引 NBC）",
-    "url": "https://nypost.com/2026/10/27/business/crooks-have-pulled-off-100m-in-ai-data-center-equipment-heists-since-june-report/"
+    "url": "https://nypost.com/2026/10/27/business/crooks-have-pulled-off-100m-in-ai-data-center-equipment-heists-since-june-report/",
+    "en": {
+      "date": "Jun 2026 (date not disclosed)",
+      "area": "United States",
+      "place": "California to Texas",
+      "cargo": "Server rack components",
+      "type": "Hijacking",
+      "value": "US$10 million",
+      "summary": "An SUV hit the escort vehicle so the trailer could be driven away, and investigators believe the GPS coordinates for the shipment were spoofed."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA",
+        "TX"
+      ],
+      "origin": {
+        "state": "CA"
+      },
+      "dest": {
+        "state": "TX"
+      },
+      "note": "僅寫州，未列城市"
+    }
   },
   {
     "sort": "2026-06-10",
@@ -114,7 +273,31 @@
     "value": "1,300 萬美元",
     "summary": "不明轎車撞上受雇護送的下班警察，拖車隨後被取走。",
     "site": "NY Post（引 NBC）",
-    "url": "https://nypost.com/2026/10/27/business/crooks-have-pulled-off-100m-in-ai-data-center-equipment-heists-since-june-report/"
+    "url": "https://nypost.com/2026/10/27/business/crooks-have-pulled-off-100m-in-ai-data-center-equipment-heists-since-june-report/",
+    "en": {
+      "date": "Jun 2026 (date not disclosed)",
+      "area": "United States",
+      "place": "Around Mojave, California to Fayetteville, Georgia",
+      "cargo": "Computer server equipment",
+      "type": "Hijacking",
+      "value": "US$13 million",
+      "summary": "An unidentified sedan struck an off-duty police officer hired as escort, and the trailer was then taken."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA",
+        "GA"
+      ],
+      "origin": {
+        "state": "CA",
+        "city": "Mojave"
+      },
+      "dest": {
+        "state": "GA",
+        "city": "Fayetteville"
+      }
+    }
   },
   {
     "sort": "2026-06-18",
@@ -127,7 +310,23 @@
     "value": "未揭露",
     "summary": "AGCS Marine Insurance 等人依 Carmack 修正案對 Super Micro 等提告（案號 3:26-cv-03636，標的為 2025-04 運送途中失竊的 32 台伺服器）；9/16 提出答辯、9/28 提出交叉請求，10/28 收到移轉函。",
     "site": "Docket Nexus",
-    "url": "https://docketnexus.com/case/agcs-marine-insurance-company-et-al-v-super-micro-computer-inc-et-al--casd-860050/"
+    "url": "https://docketnexus.com/case/agcs-marine-insurance-company-et-al-v-super-micro-computer-inc-et-al--casd-860050/",
+    "en": {
+      "date": "Jun 18, 2026",
+      "area": "United States",
+      "place": "U.S. District Court in Southern California",
+      "cargo": "Servers shipped by Super Micro",
+      "type": "Claims and litigation",
+      "value": "Not disclosed",
+      "summary": "AGCS Marine Insurance and others sued Super Micro and others under the Carmack Amendment (case no. 3:26-cv-03636, concerning 32 servers stolen in transit in April 2025). An answer was filed on Sep 16, a cross-claim on Sep 28, and a transfer letter was received on Oct 28."
+    },
+    "geo": {
+      "mapped": false,
+      "states": [],
+      "origin": null,
+      "dest": null,
+      "note": "法院案件，無實際運輸地點"
+    }
   },
   {
     "sort": "2026-05-15",
@@ -140,7 +339,25 @@
     "value": "約 400 萬美元",
     "summary": "南加州當局查扣疑似贓貨，一人被捕。",
     "site": "WIRED",
-    "url": "https://www.wired.com/story/the-worst-ive-ever-seen-cargo-thieves-are-turning-violent-in-pursuit-of-ai-hardware/"
+    "url": "https://www.wired.com/story/the-worst-ive-ever-seen-cargo-thieves-are-turning-violent-in-pursuit-of-ai-hardware/",
+    "en": {
+      "date": "May 2026",
+      "area": "United States",
+      "place": "Southern California",
+      "cargo": "Deepcool AI data center cooling equipment and other items",
+      "type": "Recovery or seizure",
+      "value": "About US$4 million",
+      "summary": "Southern California authorities seized suspected stolen goods, and one person was arrested."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA"
+      ],
+      "origin": null,
+      "dest": null,
+      "note": "僅寫南加州，未列城市"
+    }
   },
   {
     "sort": "2026-04-15",
@@ -153,7 +370,31 @@
     "value": "未揭露",
     "summary": "據私人調查員通報，該批資料中心零組件在運送途中被竊。",
     "site": "WIRED",
-    "url": "https://www.wired.com/story/the-worst-ive-ever-seen-cargo-thieves-are-turning-violent-in-pursuit-of-ai-hardware/"
+    "url": "https://www.wired.com/story/the-worst-ive-ever-seen-cargo-thieves-are-turning-violent-in-pursuit-of-ai-hardware/",
+    "en": {
+      "date": "Apr 2026",
+      "area": "United States",
+      "place": "Olive Branch, Mississippi to Richardson, Texas",
+      "cargo": "34,560 optical transceiver cables and 96 network switch modules",
+      "type": "Cargo theft in transit",
+      "value": "Not disclosed",
+      "summary": "According to a private investigator's report, the data center components were stolen in transit."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "MS",
+        "TX"
+      ],
+      "origin": {
+        "state": "MS",
+        "city": "Olive Branch"
+      },
+      "dest": {
+        "state": "TX",
+        "city": "Richardson"
+      }
+    }
   },
   {
     "sort": "2026-02-15",
@@ -166,7 +407,31 @@
     "value": "150 萬美元",
     "summary": "拖車自 Fullerton 消失，來源為業界 BOLO 通報。",
     "site": "Washington Post（Yahoo）",
-    "url": "https://www.yahoo.com/news/articles/cargo-thieves-stealing-millions-dollars-090000882.html"
+    "url": "https://www.yahoo.com/news/articles/cargo-thieves-stealing-millions-dollars-090000882.html",
+    "en": {
+      "date": "Feb 2026",
+      "area": "United States",
+      "place": "Fullerton, California to Columbus, Ohio",
+      "cargo": "Graphics cards (GPUs)",
+      "type": "Cargo theft in transit",
+      "value": "US$1.5 million",
+      "summary": "The trailer disappeared from Fullerton, according to an industry BOLO alert."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA",
+        "OH"
+      ],
+      "origin": {
+        "state": "CA",
+        "city": "Fullerton"
+      },
+      "dest": {
+        "state": "OH",
+        "city": "Columbus"
+      }
+    }
   },
   {
     "sort": "2025-12-15",
@@ -179,7 +444,32 @@
     "value": "310 萬美元",
     "summary": "拖車在抵達 Mesa 前消失。",
     "site": "Washington Post（Yahoo）",
-    "url": "https://www.yahoo.com/news/articles/cargo-thieves-stealing-millions-dollars-090000882.html"
+    "url": "https://www.yahoo.com/news/articles/cargo-thieves-stealing-millions-dollars-090000882.html",
+    "en": {
+      "date": "Dec 2025",
+      "area": "United States",
+      "place": "Shipment bound for Mesa, Arizona",
+      "cargo": "Hard drives",
+      "type": "Cargo theft in transit",
+      "value": "US$3.1 million",
+      "summary": "The trailer disappeared before reaching Mesa."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "AZ"
+      ],
+      "origin": null,
+      "dest": {
+        "state": "AZ",
+        "city": "Mesa"
+      },
+      "point": {
+        "state": "AZ",
+        "city": "Mesa"
+      },
+      "note": "來源地未寫，不畫路線"
+    }
   },
   {
     "sort": "2025-11-05",
@@ -192,7 +482,25 @@
     "value": "最高 2,200 萬美元（指控總額）",
     "summary": "六名南加州男子遭起訴；指控含 2024-12 自 Burlingame 倉庫竊取的 704 萬美元 NVIDIA 晶片。",
     "site": "SFist",
-    "url": "https://sfist.com/2025/11/05/alleged-socal-tech-burglar-crew-charged-with-stealing-22-million-worth-of-gear-from-bay-area-companies/"
+    "url": "https://sfist.com/2025/11/05/alleged-socal-tech-burglar-crew-charged-with-stealing-22-million-worth-of-gear-from-bay-area-companies/",
+    "en": {
+      "date": "Nov 5, 2025 (indictment)",
+      "area": "United States",
+      "place": "San Francisco Bay Area, California",
+      "cargo": "NVIDIA chips and other tech equipment",
+      "type": "Warehouse theft",
+      "value": "Up to US$22 million (total alleged)",
+      "summary": "Six Southern California men were indicted; the allegations include US$7.04 million of NVIDIA chips stolen from a Burlingame warehouse in December 2024."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA"
+      ],
+      "origin": null,
+      "dest": null,
+      "note": "僅寫加州灣區，未列城市"
+    }
   },
   {
     "sort": "2025-09-23",
@@ -205,7 +513,31 @@
     "value": "約 70 萬美元",
     "summary": "貨物以詐欺手段被竊，10/17 在 Katy 倉儲設施被查扣；賣家被認為也是詐騙受害者。",
     "site": "Covering Katy",
-    "url": "https://coveringkaty.com/news/katy/fort-bend-county-deputies-seize-700k-in-stolen-dell-servers-/"
+    "url": "https://coveringkaty.com/news/katy/fort-bend-county-deputies-seize-700k-in-stolen-dell-servers-/",
+    "en": {
+      "date": "Sep 23, 2025",
+      "area": "United States",
+      "place": "Chandler, Arizona to Katy, Texas",
+      "cargo": "122 Dell servers",
+      "type": "Cargo theft in transit",
+      "value": "About US$700,000",
+      "summary": "The goods were stolen by fraud and seized on Oct 17 at a storage facility in Katy. The seller is believed to be a victim of the scam as well."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "AZ",
+        "TX"
+      ],
+      "origin": {
+        "state": "AZ",
+        "city": "Chandler"
+      },
+      "dest": {
+        "state": "TX",
+        "city": "Katy"
+      }
+    }
   },
   {
     "sort": "2025-09-15",
@@ -218,7 +550,31 @@
     "value": "3,100 萬美元",
     "summary": "假司機取走拖車，GPS 訊號在 El Paso 附近中斷，拖車後於加州 Irwindale 尋獲，猶他州檢察長辦公室調查中。",
     "site": "Washington Post（Yahoo）",
-    "url": "https://www.yahoo.com/news/articles/cargo-thieves-stealing-millions-dollars-090000882.html"
+    "url": "https://www.yahoo.com/news/articles/cargo-thieves-stealing-millions-dollars-090000882.html",
+    "en": {
+      "date": "Sep 2025",
+      "area": "United States",
+      "place": "Salt Lake City, Utah to El Paso, Texas",
+      "cargo": "40 AI server racks and 108,230 memory modules",
+      "type": "Cargo theft in transit",
+      "value": "US$31 million",
+      "summary": "A fake driver took the trailer, and the GPS signal was lost near El Paso. The trailer was later found in Irwindale, California, and the Utah Attorney General's office is investigating."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "UT",
+        "TX"
+      ],
+      "origin": {
+        "state": "UT",
+        "city": "Salt Lake City"
+      },
+      "dest": {
+        "state": "TX",
+        "city": "El Paso"
+      }
+    }
   },
   {
     "sort": "2025-07-03",
@@ -231,7 +587,29 @@
     "value": "1,500 萬美元",
     "summary": "午夜後 14 分鐘內整輛拖車被掛走；GPS 追蹤器被丟棄，空拖車在約 280 英里外尋獲。",
     "site": "FreightWaves",
-    "url": "https://www.freightwaves.com/news/semi-trailer-with-15m-in-apple-products-semiconductors-stolen-in-nevada"
+    "url": "https://www.freightwaves.com/news/semi-trailer-with-15m-in-apple-products-semiconductors-stolen-in-nevada",
+    "en": {
+      "date": "Jul 3, 2025",
+      "area": "United States",
+      "place": "Reno, Nevada",
+      "cargo": "Apple products and AMD chips",
+      "type": "Warehouse theft",
+      "value": "US$15 million",
+      "summary": "An entire trailer was hitched and driven away within 14 minutes after midnight. The GPS tracker was discarded, and the empty trailer was found about 280 miles away."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "NV"
+      ],
+      "origin": null,
+      "dest": null,
+      "point": {
+        "state": "NV",
+        "city": "Reno"
+      },
+      "note": "單一地點"
+    }
   },
   {
     "sort": "2025-06-03",
@@ -244,7 +622,29 @@
     "value": "約 20 萬美元",
     "summary": "倉庫竊案，涉案晶片價值約 20 萬美元。",
     "site": "Washington Post（Yahoo）",
-    "url": "https://www.yahoo.com/news/articles/cargo-thieves-stealing-millions-dollars-090000882.html"
+    "url": "https://www.yahoo.com/news/articles/cargo-thieves-stealing-millions-dollars-090000882.html",
+    "en": {
+      "date": "Jun 2025",
+      "area": "United States",
+      "place": "Fremont, California",
+      "cargo": "NVIDIA chips",
+      "type": "Warehouse theft",
+      "value": "About US$200,000",
+      "summary": "A warehouse theft involving chips valued at about US$200,000."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA"
+      ],
+      "origin": null,
+      "dest": null,
+      "point": {
+        "state": "CA",
+        "city": "Fremont"
+      },
+      "note": "單一地點"
+    }
   },
   {
     "sort": "2025-04-01",
@@ -257,6 +657,30 @@
     "value": "未揭露",
     "summary": "據 AGCS 與 Starr 起訴狀指稱，該批貨物約於當日運送途中失竊；起訴狀稱承運人係經公開貨運撮合平台（load board）轉包，保險人事後提起代位求償。",
     "site": "UniCourt",
-    "url": "https://unicourt.com/case/ca-sd-casebj9bccd04a0e02-1893124"
+    "url": "https://unicourt.com/case/ca-sd-casebj9bccd04a0e02-1893124",
+    "en": {
+      "date": "Apr 1, 2025",
+      "area": "United States",
+      "place": "San Jose, California to Las Vegas, Nevada",
+      "cargo": "32 servers (shipped by Super Micro to Qualcomm)",
+      "type": "Cargo theft in transit",
+      "value": "Not disclosed",
+      "summary": "According to the AGCS and Starr complaint, the shipment was stolen in transit on or about that date. The complaint states the carrier was subcontracted through a public load board, and the insurers later brought a subrogation claim."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA",
+        "NV"
+      ],
+      "origin": {
+        "state": "CA",
+        "city": "San Jose"
+      },
+      "dest": {
+        "state": "NV",
+        "city": "Las Vegas"
+      }
+    }
   }
 ]
