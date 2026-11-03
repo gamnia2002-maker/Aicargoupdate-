@@ -1,5 +1,23 @@
 [
   {
+    "sort": "2026-10-05",
+    "date": "2026-10-05",
+    "kind": "保險市場",
+    "scope": "美國",
+    "title": "Chaucer 與 Indemni 推出鎖定策略性竊盜的美國貨物保險方案",
+    "value": "單一運輸限額最高 1,500 萬美元",
+    "summary": "Chaucer（Lloyd's 1084 辛迪加）主導，新核准的承保代理人 Indemni（科技導向的貨物風險專業機構）代為承保，鎖定策略性竊盜，亦即罪犯偽冒合法承運人提貨的虛構提貨。方案保障美國陸運，含單一運輸每批最高 1,500 萬美元、年度或有貨物責任限額最高 100 萬美元及獨立策略性竊盜保險，並由 Aviva、Atrium、Blenheim 與 Talbot 辛迪加提供額外承保能量；風險控管包括核對實際提貨駕駛、安全放行運費確認、貨況追蹤、文件查核、照片證據與可供理賠的稽核軌跡，每批逾 18 項自動查核。Indemni 稱 AI 基礎設施建置使單一拖車所載晶片、伺服器與資料中心設備價值可達 1,500 萬美元，此為該公司自行提出的數字。",
+    "site": "Chaucer Group",
+    "url": "https://www.chaucergroup.com/news/chaucer-and-indemni-launch-lloyds-us-cargo-proposition-targeting-strategic-theft",
+    "en": {
+      "date": "Oct 5, 2026",
+      "scope": "United States",
+      "title": "Chaucer and Indemni launch a US cargo insurance proposition targeting strategic theft",
+      "value": "Single transit limit of up to US$15 million",
+      "summary": "Chaucer (Syndicate 1084 at Lloyd's) leads, and Indemni, a cargo risk specialist focused on technology and newly approved as a Lloyd's coverholder, underwrites on Chaucer's behalf. The proposition targets strategic theft, that is, fraud in which criminals impersonate legitimate carriers to collect loads (fictitious pickups). It covers US land transit, including single transit cover of up to US$15 million per shipment, annual contingent cargo with liability limits of up to US$1 million, and standalone strategic theft cover, with additional capacity from the Aviva, Atrium, Blenheim and Talbot syndicates. Risk controls include verifying the driver who physically collects the load, secure release of the rate confirmation, shipment tracking, document checks, photo evidence and an audit trail usable for claims, with more than 18 automated checks per shipment. Indemni says that as AI infrastructure is built out, a single trailer load of chips, servers and data center hardware can be worth up to US$15 million, a figure given by the company itself."
+    }
+  },
+  {
     "sort": "2026-08-18",
     "date": "2026-08-18",
     "kind": "產業報告",
