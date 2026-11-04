@@ -97,6 +97,18 @@
       "lon": -115.264037,
       "census_name": "Las Vegas city",
       "geoid": "3240000"
+    },
+    "Libertyville, IL": {
+      "lat": 42.284667,
+      "lon": -87.966503,
+      "census_name": "Libertyville village",
+      "geoid": "1743250"
+    },
+    "Sterling, VA": {
+      "lat": 39.004733,
+      "lon": -77.405368,
+      "census_name": "Sterling CDP",
+      "geoid": "5175376"
     }
   }
 }

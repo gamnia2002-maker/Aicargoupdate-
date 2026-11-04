@@ -1,5 +1,73 @@
 [
   {
+    "sort": "2026-09-25",
+    "date": "2026-09-25",
+    "month": "2026-09",
+    "area": "美國",
+    "place": "伊利諾州 Libertyville → 維吉尼亞州 Sterling（內布拉斯加州 Dawson County、Overton 附近查獲）",
+    "cargo": "資料伺服器",
+    "type": "追回查獲",
+    "value": "約 140 萬美元（媒體估計）",
+    "summary": "9 月 25 日，內布拉斯加州警依貨物竊盜調查單位線報，於 Dawson County、Overton 附近 Cenex 卡車休息站接觸一輛 2018 年 Freightliner 的駕駛。貨運文件顯示貨物自伊利諾州 Libertyville 起運、目的地為維吉尼亞州 Sterling；經搜索票確認車內為失竊資料伺服器，價值約 140 萬美元（媒體估計）。22 歲、來自加州 Elk Grove 的駕駛因竊盜重罪及未取得商業駕照（CDL）駕駛商業車輛被捕，其後交保。",
+    "site": "KRVN",
+    "url": "https://ruralradio.com/krvn/news/ca-driver-arrested-after-alleged-1-4-million-cargo-theft/",
+    "en": {
+      "date": "Sep 25, 2026",
+      "area": "United States",
+      "place": "Libertyville, Illinois to Sterling, Virginia (recovered near Overton, Dawson County, Nebraska)",
+      "cargo": "Data servers",
+      "type": "Recovery or seizure",
+      "value": "About US$1.4 million (media estimate)",
+      "summary": "On Sep 25, 2026, the Nebraska State Patrol, acting on a tip from a cargo theft investigation unit, contacted the driver of a 2018 Freightliner at the Cenex truck stop near Overton, Dawson County, Nebraska. Shipping documents showed the cargo was picked up in Libertyville, Illinois and destined for Sterling, Virginia. After a search warrant, troopers confirmed the cargo was stolen data servers valued at about US$1.4 million (media estimate). A 22-year-old driver from Elk Grove, California was arrested for felony theft and for driving a commercial vehicle without a CDL, and was later released on bond."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "IL",
+        "VA",
+        "NE"
+      ],
+      "origin": {
+        "state": "IL",
+        "city": "Libertyville"
+      },
+      "dest": {
+        "state": "VA",
+        "city": "Sterling"
+      },
+      "note": "貨運文件起訖為 Libertyville 至 Sterling；查獲於 Overton 附近，無第三地點欄，不另畫點"
+    }
+  },
+  {
+    "sort": "2026-09-20",
+    "date": "2026-09-20",
+    "month": "2026-09",
+    "area": "馬來西亞",
+    "place": "馬來西亞檳城 Persiaran Bayan Lepas",
+    "cargo": "積體電路晶片 3 萬顆",
+    "type": "倉儲竊盜",
+    "value": "估計 RM200 萬（媒體估計）",
+    "summary": "9 月 20 日上午 7 時 30 分，三名男子自 Elite Electronic Product Services (M) Sdn Bhd 工廠倉庫竊取 3 萬顆積體電路晶片，估計價值 RM200 萬（媒體估計）。周界圍籬被剪開、倉庫後門被撬開，監視器曾被移動。失竊物品其後全數於 Permatang Damar Laut 一處廢金屬店尋回。三人（一名貨車司機與兩名廚師）認罪，Balik Pulau 推事法院各判處罰款 RM7,000。",
+    "site": "New Straits Times",
+    "url": "https://www.nst.com.my/news/regional/2026/10/1551240/lorry-driver-two-cooks-fined-rm7000-each-over-rm2mil-chip-theft",
+    "en": {
+      "date": "Sep 20, 2026",
+      "area": "Malaysia",
+      "place": "Persiaran Bayan Lepas, Penang, Malaysia",
+      "cargo": "30,000 integrated circuit chips",
+      "type": "Warehouse theft",
+      "value": "Estimated RM2 million (media estimate)",
+      "summary": "At 7:30 a.m. on Sep 20, 2026, three men stole 30,000 integrated circuit chips, estimated at RM2 million (media estimate), from the store of the Elite Electronic Product Services (M) Sdn Bhd factory on Persiaran Bayan Lepas, Penang. The perimeter fence was cut, the store's rear door was pried open, and CCTV cameras had been moved. All stolen items were later recovered at a scrap metal shop in Permatang Damar Laut. The three, a lorry driver and two cooks, pleaded guilty and were each fined RM7,000 by the Balik Pulau magistrate's court."
+    },
+    "geo": {
+      "mapped": false,
+      "states": [],
+      "origin": null,
+      "dest": null,
+      "note": "地點在馬來西亞，非美國，不上地圖"
+    }
+  },
+  {
     "sort": "2026-09-21",
     "date": "約 2026-09-21（報導日期互有出入）",
     "month": "2026-09",
