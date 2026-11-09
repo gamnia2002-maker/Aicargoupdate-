@@ -1,7 +1,7 @@
 {
-  "last_updated": "2026-11-04",
+  "last_updated": "2026-11-09",
   "trends": [
-    "損失集中在少數八位數美元的貨載：Overhaul 稱 2026 年 AI 設備竊盜已逾 1.5 億美元，NBC 統計 6 月起逾 1 億美元；CargoNet 第二季整體貨物竊盜件數年減 26%，損失卻由 1.357 億升至 3.046 億美元。",
+    "損失集中在少數八位數美元的貨載：Overhaul 稱 2026 年 AI 設備竊盜已逾 1.5 億美元，NBC 統計 6 月起逾 1 億美元；CargoNet 稱截至 9 月累計損失 7.189 億美元、年增 39%，件數由 2,755 降至 2,072（年減 25%），平均被竊價值約升 72%（261,115 美元至 448,456 美元），第三季估計損失 2.301 億美元。",
     "手法由強取轉向詐欺：Overhaul 稱 92% 的高價值科技貨竊案涉及偽冒承運人、雙重委託或偽造文件；加州同時出現蓄意追撞護衛車的 bump-and-run，TAPA Americas 估計六至七成被竊貨物流出美國。",
     "保險端正在補缺口：Lloyd's 的 Helix Consortium（運輸限額最高 7,500 萬美元）與 ATA 7.5 億美元機制已上市，但 Hunton 提醒保單條件仍有缺口，AGCS 對 Super Micro 的 Carmack 修正案代位求償顯示責任歸屬爭議。"
   ],
@@ -94,7 +94,7 @@
   ],
   "en": {
     "trends": [
-      "Losses are concentrated in a few eight-figure US dollar loads. Overhaul says AI equipment theft has passed US$150 million in 2026, and NBC counts more than US$100 million since June. CargoNet reports that overall cargo theft incidents fell 26% year over year in Q2, while losses rose from US$135.7 million to US$304.6 million.",
+      "Losses are concentrated in a few eight-figure US dollar loads. Overhaul says AI equipment theft has passed US$150 million in 2026, and NBC counts more than US$100 million since June. CargoNet reports year-to-date losses of US$718.9 million through September, up 39%, while incidents fell 25% from 2,755 to 2,072 and the average stolen value rose about 72% from US$261,115 to US$448,456. Q3 estimated losses were US$230.1 million.",
       "Methods are shifting from force to fraud. Overhaul says 92% of high-value tech cargo thefts involve carrier impersonation, double brokering or forged documents. In California, deliberate bump-and-run rammings of escort vehicles have also appeared, and TAPA Americas estimates that 60% to 70% of stolen cargo leaves the United States.",
       "Insurance is closing the gaps. Lloyd's Helix Consortium (transit limits of up to US$75 million) and the ATA US$750 million facility are now on the market, but Hunton cautions that policy terms still leave gaps, and AGCS's Carmack Amendment subrogation claim against Super Micro shows disputes over liability."
     ],
