@@ -1,5 +1,23 @@
 [
   {
+    "sort": "2026-11-04",
+    "date": "2026-11-04",
+    "kind": "產業報告",
+    "scope": "美國、加拿大",
+    "title": "Verisk CargoNet 2026 第三季貨物竊盜分析",
+    "value": "Q3 估計損失 2.301 億美元；平均被竊價值約增 72%",
+    "summary": "2026 年第三季美國與加拿大供應鏈犯罪 547 件，年減 33%、季減 19%；該季估計損失 2.301 億美元，較去年同期 2.051 億美元增 12%。截至 9 月累計損失 7.189 億美元，年增 39%，件數由 2,755 降至 2,072（年減 25%）；有記載價值者的平均被竊價值約增 72%（261,115 美元至 448,456 美元）。虛構提貨 138 件，占比約 25%（前為 18%）。第三季 100 萬美元以上竊案 19 件，去年同期 9 件，其中多起涉及高價值電子產品與資料中心物料。加州、伊利諾州、紐澤西州與德州合計占該季件數 57%。",
+    "site": "Verisk",
+    "url": "https://www.verisk.com/company/newsroom/fewer-cargo-thefts-bigger-losses-average-theft-value-jumps-72-percent-year-to-date/",
+    "en": {
+      "date": "Nov 4, 2026",
+      "scope": "United States, Canada",
+      "title": "Verisk CargoNet Q3 2026 cargo theft analysis",
+      "value": "Q3 estimated losses of US$230.1 million; average stolen value up about 72%",
+      "summary": "In Q3 2026, Verisk CargoNet recorded 547 supply chain crime incidents in the United States and Canada, down 33% year over year and 19% from the prior quarter. Estimated losses for the quarter were US$230.1 million, up 12% from US$205.1 million. Year-to-date losses through September were US$718.9 million, up 39%, while incidents fell 25% from 2,755 to 2,072. The average value of stolen goods, among incidents with a documented value, rose about 72%, from US$261,115 to US$448,456. Fictitious pickups were 138 incidents, about 25% of reported activity, up from 18%. There were 19 thefts of US$1 million or more in Q3, compared with 9 a year earlier, many involving high-value electronics and data center materials. California, Illinois, New Jersey and Texas accounted for 57% of incidents."
+    }
+  },
+  {
     "sort": "2026-10-05",
     "date": "2026-10-05",
     "kind": "保險市場",

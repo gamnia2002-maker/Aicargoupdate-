@@ -109,6 +109,18 @@
       "lon": -77.405368,
       "census_name": "Sterling CDP",
       "geoid": "5175376"
+    },
+    "Oakland, CA": {
+      "lat": 37.769846,
+      "lon": -122.22569,
+      "census_name": "Oakland city",
+      "geoid": "0653000"
+    },
+    "Fort Worth, TX": {
+      "lat": 32.781954,
+      "lon": -97.348573,
+      "census_name": "Fort Worth city",
+      "geoid": "4827000"
     }
   }
 }

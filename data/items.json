@@ -1,5 +1,72 @@
 [
   {
+    "sort": "2026-11-06",
+    "date": "2026-11-06",
+    "month": "2026-11",
+    "area": "墨西哥",
+    "place": "墨西哥哈利斯科州 San Pedro Tlaquepaque",
+    "cargo": "供伺服器與 AI 應用之智慧晶片",
+    "type": "追回查獲",
+    "value": "約 3,000 萬美元（媒體估計值，警方所述商業價值）",
+    "summary": "11 月 6 日，San Pedro Tlaquepaque 市安全與公民保護局尋回一輛白色 Hino 300（3.5 噸）、印有 Esgari 標誌的卡車。該車在通往 Guadalajara 的 carretera a Chapala 遭暴力搶劫，載有供伺服器與 AI 應用的智慧晶片，警方所述商業價值約 3,000 萬美元（媒體估計值）。通報來自企業 WhatsApp 群組 Línea Segura de Vinculación Ciudadana；無線電確認車輛偏離既定路線。巡邏車在抵達 Periférico 前於該公路看見該車，駕駛無視停車指示後展開短暫追捕，結束於 colonia Guadalupana 的 calle Puerto Guaimas。18 歲的 Juan Antonio「N」涉嫌挾持女駕駛，試圖徒步逃逸時被捕；警方查扣訊號干擾器、仿真槍與刀。貨物全數尋回，人車與電子零件已移交專門承辦重型貨物的檢察官。被告依法推定無罪。",
+    "site": "Quadratín Jalisco",
+    "url": "https://jalisco.quadratin.com.mx/sucesos/recuperan-tlaquepaque-cargamento-de-chips-de-ia-valuado-en-30-mdd/",
+    "en": {
+      "date": "Nov 6, 2026",
+      "area": "Mexico",
+      "place": "San Pedro Tlaquepaque, Jalisco, Mexico",
+      "cargo": "Smart chips for servers and AI applications",
+      "type": "Recovery or seizure",
+      "value": "About US$30 million (media estimate, commercial value stated by police)",
+      "summary": "On Nov 6, 2026, the San Pedro Tlaquepaque Secretariat of Security and Citizen Protection recovered a white Hino 300 truck (3.5 tonnes) bearing Esgari logos. The truck had been robbed with violence on the carretera a Chapala heading toward Guadalajara and was carrying smart chips for servers and AI applications. Police stated a commercial value of about US$30 million (media estimate). The alert came through the business WhatsApp group Línea Segura de Vinculación Ciudadana, and the radio desk confirmed the truck had left its assigned route. A patrol on that highway, before the Periférico, saw the truck. After the driver ignored signals to stop, a brief pursuit ended on calle Puerto Guaimas in colonia Guadalupana. An 18-year-old, Juan Antonio \"N\", who was allegedly holding the female driver under threat, was arrested after trying to flee on foot. Police seized a signal jammer, a replica gun and a knife. All of the cargo was recovered, and the suspect, the vehicle and the electronic components were turned over to the prosecutor specialized in heavy cargo. He is presumed innocent."
+    },
+    "geo": {
+      "mapped": false,
+      "states": [],
+      "origin": null,
+      "dest": null,
+      "note": "地點在墨西哥，非美國，不上地圖"
+    }
+  },
+  {
+    "sort": "2026-08-29",
+    "date": "2026-08-29",
+    "month": "2026-08",
+    "area": "美國",
+    "place": "加州 Oakland → 德州 Fort Worth",
+    "cargo": "NVIDIA 硬體 6 板",
+    "type": "運輸竊盜",
+    "value": "約 1,140 萬美元（媒體估計值）",
+    "summary": "6 板 NVIDIA 硬體於 8 月 29 日自加州 Oakland 啟運，目的地為德州 Fort Worth，媒體報導價值約 1,140 萬美元（媒體估計值）。該批貨物依計畫由一輛標示為食品運輸公司的卡車提走；調查人員其後在 San Bernardino County 失去該車蹤跡。被害方於 9 月 13 日向 Oakland 警察局報案，警方表示正在調查東 Oakland 的重大竊盜（grand theft）。確切產品未揭露。警方尚未公布手法，調查仍在進行，尚未宣布逮捕或尋回。",
+    "site": "ABC7",
+    "url": "https://abc7news.com/post/114-million-shipment-nvidia-cargo-stolen-oakland-calif/20018822/",
+    "en": {
+      "date": "Aug 29, 2026",
+      "area": "United States",
+      "place": "Oakland, California to Fort Worth, Texas",
+      "cargo": "Six pallets of NVIDIA hardware",
+      "type": "Cargo theft in transit",
+      "value": "About US$11.4 million (media estimate)",
+      "summary": "Six pallets of NVIDIA hardware left Oakland, California on Aug 29, 2026, bound for Fort Worth, Texas. Media reports put the value at about US$11.4 million (media estimate). The cargo was picked up as planned by a truck identified as a food transport company, and investigators later lost track of the truck in San Bernardino County. The victim reported the crime to the Oakland Police Department on Sep 13, 2026. Police said they are investigating a grand theft in East Oakland. The exact products were not disclosed. Police have not announced the method, the investigation is ongoing, and no arrests or recovery have been announced."
+    },
+    "geo": {
+      "mapped": true,
+      "states": [
+        "CA",
+        "TX"
+      ],
+      "origin": {
+        "state": "CA",
+        "city": "Oakland"
+      },
+      "dest": {
+        "state": "TX",
+        "city": "Fort Worth"
+      },
+      "note": "追蹤在 San Bernardino County 中斷；該處為郡名而非城市，不另標城市、不另畫點，路線只標 Oakland 至 Fort Worth"
+    }
+  },
+  {
     "sort": "2026-09-25",
     "date": "2026-09-25",
     "month": "2026-09",
