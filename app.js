@@ -94,6 +94,7 @@
       filterSearchPh: "搜尋 GPU、Reno、晶片…",
       filterShown: (n) => `目前 ${n} 則`,
       filterReset: "重設",
+      filterToggle: "篩選",
       filterAllStates: "全部州別（含未標示）",
       filterUnmapped: "未標示或非美國",
       filterAllMonths: "全部月份",
@@ -194,6 +195,7 @@
       filterSearch: "Keyword",
       filterSearchPh: "Search GPU, Reno, chips...",
       filterShown: (n) => `${n} shown`,
+      filterToggle: "Filter",
       filterReset: "Reset",
       filterAllStates: "All states (including unmapped)",
       filterUnmapped: "Unmapped or outside the US",
@@ -612,6 +614,16 @@
     return `${name} ${code}`;
   }
 
+  // Mobile only: whether the collapsed filter panel is expanded. Desktop CSS ignores it.
+  let filterOpen = false;
+
+  function setFilterOpen(open) {
+    filterOpen = open;
+    const host = byId("filter-bar");
+    if (host) host.classList.toggle("is-open", open);
+    if (fbar && fbar.toggle) fbar.toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
   function buildFilterBar() {
     const host = byId("filter-bar");
     if (!host) return;
@@ -718,8 +730,29 @@
       actions,
     );
 
-    host.append(typeRow, controls);
-    Object.assign(fbar, { stateSelect, monthSelect, input, count, reset });
+    const body = document.createElement("div");
+    body.className = "filter-body";
+    body.id = "filter-body";
+    body.append(typeRow, controls);
+
+    // Mobile toolbar: toggle plus a Reset that stays reachable while collapsed.
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "filter-toggle";
+    toggle.setAttribute("aria-controls", "filter-body");
+    toggle.addEventListener("click", () => setFilterOpen(!filterOpen));
+    const miniReset = document.createElement("button");
+    miniReset.type = "button";
+    miniReset.className = "filter-reset filter-reset-mini";
+    miniReset.textContent = L.filterReset;
+    miniReset.addEventListener("click", resetFilters);
+    const toolbar = document.createElement("div");
+    toolbar.className = "filter-toolbar";
+    toolbar.append(toggle, miniReset);
+
+    host.append(toolbar, body);
+    Object.assign(fbar, { stateSelect, monthSelect, input, count, reset, toggle, miniReset });
+    setFilterOpen(filterOpen);
   }
 
   // Updates the built controls in place so focus and a half typed keyword survive.
@@ -756,6 +789,11 @@
     if (fbar.input.value.trim() !== filters.q) fbar.input.value = filters.q;
     fbar.count.textContent = L.filterShown(filteredIncidentList().length);
     fbar.reset.disabled = !filtersActive();
+    const active = filtersActive();
+    fbar.toggle.textContent = active
+      ? `${L.filterToggle} · ${L.filterShown(filteredIncidentList().length)}`
+      : L.filterToggle;
+    fbar.miniReset.hidden = !active;
   }
 
   // ---- renderers ------------------------------------------------------------
