@@ -8,6 +8,12 @@
   <meta property="og:title" content="AI 貨損紀實｜AI Cargo Loss Ledger">
   <meta name="twitter:title" content="AI 貨損紀實｜AI Cargo Loss Ledger">
   <meta property="og:site_name" content="AI 貨損紀實｜AI Cargo Loss Ledger">
+  <meta property="og:image" content="https://gamnia2002-maker.github.io/Aicargoupdate-/og-image.png">
+  <meta name="twitter:image" content="https://gamnia2002-maker.github.io/Aicargoupdate-/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://gamnia2002-maker.github.io/Aicargoupdate-/">
   <meta name="description" content="彙整與 AI 伺服器、GPU 與晶片、資料中心設備相關的運輸事故，以及產業報告與保險市場動態。">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +38,7 @@
   </header>
   <div id="loading" class="wrap">
     <p class="panel loading-panel" data-i18n="loading">資料載入中…</p>
+    <div class="skeleton" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   </div>
   <noscript>
     <div class="wrap">
@@ -41,6 +48,10 @@
   <main id="main" class="wrap" hidden>
     <section class="panel" aria-label="指標" data-i18n-aria="metricsAria">
       <div id="metrics" class="metrics"></div>
+    </section>
+
+    <section id="filter-panel" class="panel filter-panel">
+      <div id="filter-bar" class="filter-bar" role="search" aria-label="篩選事故" data-i18n-aria="filterAria"></div>
     </section>
 
     <section class="panel" aria-labelledby="h-latest">

@@ -78,13 +78,27 @@
       all: "全部",
       metricIncidents: "已收錄事故",
       monthsUnknown: "月份未明",
+      metricUpdated: "每週更新",
       monthRange: (a, b) => `${a} 至 ${b}`,
       summary: (span, n, claims, reports) =>
         `彙整與 AI 伺服器、GPU 與晶片、資料中心設備相關的運輸事故。本站每週自動彙整並更新最新的公開資訊。收錄 ${n} 則事故（含 ${claims} 則理賠與訴訟），另整理 ${reports} 則產業報告與保險市場動態，每則均附原始來源連結。`,
       tickerRole: "輪播",
       tickerLabel: "最新事故輪播",
       noIncidents: "目前沒有事故。",
-      noMatches: "目前沒有符合的事故。",
+      noMatches: "目前沒有符合的事故。可調整條件，或按「重設」顯示全部。",
+      filterAria: "篩選事故",
+      filterType: "類型",
+      filterState: "美國州別",
+      filterMonth: "月份",
+      filterSearch: "關鍵字",
+      filterSearchPh: "搜尋 GPU、Reno、晶片…",
+      filterShown: (n) => `目前 ${n} 則`,
+      filterReset: "重設",
+      filterAllStates: "全部州別（含未標示）",
+      filterUnmapped: "未標示或非美國",
+      filterAllMonths: "全部月份",
+      filterUndated: "月份未明",
+      filterOpt: (label, n) => `${label}（${n}）`,
       pause: "暫停",
       play: "播放",
       estValue: (v) => `估計價值：${v}`,
@@ -165,13 +179,27 @@
       all: "All",
       metricIncidents: "Incidents tracked",
       monthsUnknown: "Months not specified",
+      metricUpdated: "Updated weekly",
       monthRange: (a, b) => `${a} to ${b}`,
       summary: (span, n, claims, reports) =>
         `A digest of transit incidents involving AI servers, GPUs and chips, and data center equipment. This site is compiled and updated automatically every week with the latest public information. It lists ${n} ${plural(n, "incident", "incidents")} (including ${claims} claims and litigation ${plural(claims, "matter", "matters")}), plus ${reports} industry ${plural(reports, "report", "reports")} and insurance market ${plural(reports, "update", "updates")}, each linked to its original source.`,
       tickerRole: "carousel",
       tickerLabel: "Latest incidents carousel",
       noIncidents: "There are no incidents at the moment.",
-      noMatches: "No matching incidents.",
+      noMatches: "No matching incidents. Adjust the filters or press Reset to show everything.",
+      filterAria: "Filter incidents",
+      filterType: "Type",
+      filterState: "US state",
+      filterMonth: "Month",
+      filterSearch: "Keyword",
+      filterSearchPh: "Search GPU, Reno, chips...",
+      filterShown: (n) => `${n} shown`,
+      filterReset: "Reset",
+      filterAllStates: "All states (including unmapped)",
+      filterUnmapped: "Unmapped or outside the US",
+      filterAllMonths: "All months",
+      filterUndated: "Month not specified",
+      filterOpt: (label, n) => `${label} (${n})`,
       pause: "Pause",
       play: "Play",
       estValue: (v) => `Est. value: ${v}`,
@@ -273,6 +301,7 @@
 
   function setLang(next) {
     if (next === lang) return;
+    flushSearch();
     lang = next;
     try {
       window.localStorage.setItem(LANG_KEY, lang);
@@ -282,6 +311,7 @@
     try {
       const url = new URL(window.location.href);
       url.searchParams.set("lang", lang);
+      applyFilterParams(url.searchParams);
       window.history.replaceState(null, "", url.pathname + url.search + url.hash);
     } catch (e) {
       /* ignore */
@@ -429,9 +459,303 @@
   function showError(error) {
     const loading = document.getElementById("loading");
     loading.hidden = false;
+    const skeleton = loading.querySelector(".skeleton");
+    if (skeleton) skeleton.remove();
     const panel = loading.querySelector(".panel");
     panel.removeAttribute("data-i18n");
     panel.textContent = t().loadError(error && error.message ? error.message : t().retryLater);
+  }
+
+  // ---- shared incident filters ---------------------------------------------
+  // type: Chinese data key or ALL. state: "" | "unmapped" | USPS code. month: "" | "undated" | "YYYY-MM".
+  // q: trimmed keyword. Metrics, trends, reports, extra links and the header summary ignore these.
+  const DEFAULT_FILTERS = { type: ALL, state: "", month: "", q: "" };
+  const Q_MAX = 200;
+  let filters = { ...DEFAULT_FILTERS };
+  let chartYear = ""; // month chart year, kept across filter changes
+  let fbar = null; // refs to the built filter bar controls
+  let searchTimer = 0;
+  const haystacks = new WeakMap();
+
+  const filtersActive = () =>
+    filters.type !== ALL || filters.state !== "" || filters.month !== "" || filters.q !== "";
+
+  function itemStateCodes(item) {
+    const g = mappedGeo(item);
+    return g ? [...new Set(g.states.filter((c) => typeof c === "string"))] : [];
+  }
+
+  function searchHaystack(item) {
+    let cached = haystacks.get(item);
+    if (cached !== undefined) return cached;
+    const parts = [];
+    for (const field of ["date", "area", "place", "cargo", "type", "value", "summary"]) {
+      parts.push(item[field]);
+      if (item.en) parts.push(item.en[field]);
+    }
+    parts.push(item.site);
+    const g = item.geo || {};
+    for (const end of [g.origin, g.dest, g.point]) if (end) parts.push(end.city);
+    parts.push(g.note);
+    for (const code of Array.isArray(g.states) ? g.states : []) parts.push(code, STATE_ZH[code], STATE_EN[code]);
+    cached = parts.filter((v) => typeof v === "string" && v).join("\n").toLowerCase();
+    haystacks.set(item, cached);
+    return cached;
+  }
+
+  // `skip` names one dimension to ignore, used for cascade counts and for views that are
+  // also selectors (month chart ignores month, map ignores state).
+  function itemMatchesFilters(item, skip) {
+    if (skip !== "type" && filters.type !== ALL && item.type !== filters.type) return false;
+    if (skip !== "state" && filters.state) {
+      if (filters.state === "unmapped") {
+        if (mappedGeo(item)) return false;
+      } else if (!itemStateCodes(item).includes(filters.state)) {
+        return false;
+      }
+    }
+    if (skip !== "month" && filters.month) {
+      if (filters.month === "undated") {
+        if (item.month) return false;
+      } else if (item.month !== filters.month) {
+        return false;
+      }
+    }
+    if (skip !== "q" && filters.q && !searchHaystack(item).includes(filters.q.toLowerCase())) return false;
+    return true;
+  }
+
+  function filteredIncidentList(skip) {
+    return state.items.filter((item) => itemMatchesFilters(item, skip));
+  }
+
+  function stateCodesInData() {
+    const codes = new Set();
+    for (const item of state.items) for (const c of itemStateCodes(item)) if (STATE_ZH[c]) codes.add(c);
+    return [...codes].sort();
+  }
+
+  function monthsInData() {
+    return [...new Set(state.items.map((item) => monthKey(item.month)).filter(Boolean))].sort();
+  }
+
+  function readFiltersFromUrl() {
+    const next = { ...DEFAULT_FILTERS };
+    try {
+      const p = new URLSearchParams(window.location.search);
+      const type = p.get("type");
+      if (TYPE_ORDER.includes(type)) next.type = type;
+      const st = (p.get("state") || "").trim();
+      if (st.toLowerCase() === "unmapped") next.state = "unmapped";
+      else if (stateCodesInData().includes(st.toUpperCase())) next.state = st.toUpperCase();
+      const month = (p.get("month") || "").trim();
+      if (month === "undated" || monthsInData().includes(month)) next.month = month;
+      next.q = (p.get("q") || "").trim().slice(0, Q_MAX);
+    } catch (e) {
+      /* fall back to defaults */
+    }
+    filters = next;
+    if (monthKey(filters.month)) chartYear = filters.month.slice(0, 4);
+  }
+
+  function applyFilterParams(params) {
+    const set = (key, value) => (value ? params.set(key, value) : params.delete(key));
+    set("type", filters.type !== ALL ? filters.type : "");
+    set("state", filters.state);
+    set("month", filters.month);
+    set("q", filters.q);
+  }
+
+  function writeUrl() {
+    try {
+      const url = new URL(window.location.href);
+      applyFilterParams(url.searchParams);
+      window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  // Re-renders only filter-dependent views. renderAll is never called from here, so metrics,
+  // trends, reports, extra links and the header summary keep using the full data.
+  function setFilters(patch) {
+    const next = { ...filters, ...patch };
+    if (!TYPE_ORDER.includes(next.type)) next.type = ALL;
+    next.q = String(next.q || "").trim().slice(0, Q_MAX);
+    if (next.type === filters.type && next.state === filters.state && next.month === filters.month && next.q === filters.q) {
+      return;
+    }
+    filters = next;
+    if (patch.month && monthKey(patch.month)) chartYear = patch.month.slice(0, 4);
+    writeUrl();
+    renderFilteredViews();
+  }
+
+  function resetFilters() {
+    window.clearTimeout(searchTimer);
+    searchTimer = 0;
+    setFilters(DEFAULT_FILTERS);
+    // setFilters returns early when already at defaults; still clear a half typed box.
+    if (fbar && fbar.input.value !== "") fbar.input.value = "";
+  }
+
+  // Apply a debounced keyword that has not fired yet (used before the bar is rebuilt).
+  function flushSearch() {
+    if (!searchTimer) return;
+    window.clearTimeout(searchTimer);
+    searchTimer = 0;
+    if (fbar) filters = { ...filters, q: fbar.input.value.trim().slice(0, Q_MAX) };
+  }
+
+  function stateLabel(code) {
+    const name = (lang === "en" ? STATE_EN[code] : STATE_ZH[code]) || code;
+    return `${name} ${code}`;
+  }
+
+  function buildFilterBar() {
+    const host = byId("filter-bar");
+    if (!host) return;
+    flushSearch();
+    const L = t();
+    host.replaceChildren();
+    fbar = { chips: [], stateOpts: {}, monthOpts: {} };
+
+    const makeLabel = (text, id, forId) => {
+      const el = document.createElement(forId ? "label" : "span");
+      el.className = "filter-label";
+      if (id) el.id = id;
+      if (forId) el.htmlFor = forId;
+      el.textContent = text;
+      return el;
+    };
+    const makeField = (className, ...children) => {
+      const el = document.createElement("div");
+      el.className = `filter-field ${className}`;
+      el.append(...children);
+      return el;
+    };
+    const makeOption = (select, value) => {
+      const option = document.createElement("option");
+      option.value = value;
+      select.append(option);
+      return option;
+    };
+
+    // Row 1: type chips on their own full-width row.
+    const chipRow = document.createElement("div");
+    chipRow.className = "chips filter-chips";
+    chipRow.setAttribute("role", "group");
+    chipRow.setAttribute("aria-labelledby", "filter-type-label");
+    for (const value of [ALL, ...TYPE_ORDER]) {
+      const color = value === ALL ? "#0B4BFF" : TYPE_COLORS[value] || "#0B4BFF";
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "chip";
+      button.style.setProperty("--chip", color);
+      button.style.setProperty("--ink-on", inkFor(color));
+      const dot = document.createElement("i");
+      dot.className = "dot";
+      const text = document.createTextNode("");
+      button.append(dot, text);
+      button.addEventListener("click", () => setFilters({ type: value }));
+      chipRow.append(button);
+      fbar.chips.push({ value, button, text });
+    }
+    const typeRow = makeField("filter-types", makeLabel(L.filterType, "filter-type-label"), chipRow);
+
+    // Row 2: state, month, keyword, count and reset.
+    const stateSelect = document.createElement("select");
+    stateSelect.id = "filter-state";
+    fbar.stateAll = makeOption(stateSelect, "");
+    for (const code of stateCodesInData()) fbar.stateOpts[code] = makeOption(stateSelect, code);
+    fbar.stateUnmapped = makeOption(stateSelect, "unmapped");
+    stateSelect.addEventListener("change", () => setFilters({ state: stateSelect.value }));
+
+    const monthSelect = document.createElement("select");
+    monthSelect.id = "filter-month";
+    fbar.monthAll = makeOption(monthSelect, "");
+    for (const key of monthsInData()) fbar.monthOpts[key] = makeOption(monthSelect, key);
+    fbar.monthUndated = makeOption(monthSelect, "undated");
+    monthSelect.addEventListener("change", () => setFilters({ month: monthSelect.value }));
+
+    const input = document.createElement("input");
+    input.type = "search";
+    input.id = "filter-q";
+    input.autocomplete = "off";
+    input.spellcheck = false;
+    input.maxLength = Q_MAX;
+    input.placeholder = L.filterSearchPh;
+    input.addEventListener("input", () => {
+      window.clearTimeout(searchTimer);
+      searchTimer = window.setTimeout(() => {
+        searchTimer = 0;
+        setFilters({ q: input.value });
+      }, 200);
+    });
+    input.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") return;
+      window.clearTimeout(searchTimer);
+      searchTimer = 0;
+      setFilters({ q: input.value });
+    });
+
+    const count = document.createElement("p");
+    count.className = "filter-count";
+    count.setAttribute("role", "status");
+    const reset = document.createElement("button");
+    reset.type = "button";
+    reset.className = "filter-reset";
+    reset.textContent = L.filterReset;
+    reset.addEventListener("click", resetFilters);
+    const actions = makeField("filter-actions", count, reset);
+
+    const controls = document.createElement("div");
+    controls.className = "filter-controls";
+    controls.append(
+      makeField("filter-state", makeLabel(L.filterState, "", "filter-state"), stateSelect),
+      makeField("filter-month", makeLabel(L.filterMonth, "", "filter-month"), monthSelect),
+      makeField("filter-search", makeLabel(L.filterSearch, "", "filter-q"), input),
+      actions,
+    );
+
+    host.append(typeRow, controls);
+    Object.assign(fbar, { stateSelect, monthSelect, input, count, reset });
+  }
+
+  // Updates the built controls in place so focus and a half typed keyword survive.
+  function updateFilterBar() {
+    if (!fbar) return;
+    const L = t();
+    const byType = filteredIncidentList("type");
+    for (const chip of fbar.chips) {
+      const n = chip.value === ALL ? byType.length : byType.filter((item) => item.type === chip.value).length;
+      const on = chip.value === filters.type;
+      chip.text.nodeValue = `${chip.value === ALL ? L.all : typeName(chip.value)} ${n}`;
+      chip.button.classList.toggle("is-on", on);
+      chip.button.setAttribute("aria-pressed", on ? "true" : "false");
+    }
+
+    const byState = filteredIncidentList("state");
+    fbar.stateAll.textContent = L.filterOpt(L.filterAllStates, byState.length);
+    for (const code of Object.keys(fbar.stateOpts)) {
+      const n = byState.filter((item) => itemStateCodes(item).includes(code)).length;
+      fbar.stateOpts[code].textContent = L.filterOpt(stateLabel(code), n);
+    }
+    fbar.stateUnmapped.textContent = L.filterOpt(L.filterUnmapped, byState.filter((item) => !mappedGeo(item)).length);
+    fbar.stateSelect.value = filters.state;
+
+    const byMonth = filteredIncidentList("month");
+    fbar.monthAll.textContent = L.filterOpt(L.filterAllMonths, byMonth.length);
+    for (const key of Object.keys(fbar.monthOpts)) {
+      const n = byMonth.filter((item) => item.month === key).length;
+      fbar.monthOpts[key].textContent = L.filterOpt(L.monthLabel(key), n);
+    }
+    fbar.monthUndated.textContent = L.filterOpt(L.filterUndated, byMonth.filter((item) => !item.month).length);
+    fbar.monthSelect.value = filters.month;
+
+    if (fbar.input.value.trim() !== filters.q) fbar.input.value = filters.q;
+    fbar.count.textContent = L.filterShown(filteredIncidentList().length);
+    fbar.reset.disabled = !filtersActive();
   }
 
   // ---- renderers ------------------------------------------------------------
@@ -443,7 +767,7 @@
         target: items.length,
         format: (n) => String(n),
         label: t().metricIncidents,
-        detail: monthSpan(items) || t().monthsUnknown,
+        detail: t().metricUpdated,
         color: "#000F47",
         ms: 1600,
       },
@@ -487,7 +811,7 @@
     root.replaceChildren();
     if (!items.length) {
       const empty = document.createElement("p");
-      empty.textContent = t().noIncidents;
+      empty.textContent = filtersActive() ? t().noMatches : t().noIncidents;
       root.append(empty);
       return;
     }
@@ -622,9 +946,12 @@
     show(true);
   }
 
+  // `items` is the filtered list without the month dimension, so the other months stay
+  // visible and clickable while one month is selected. Years come from the full data.
   function renderMonthChart(items) {
-    const years = yearsInData(items);
-    let year = years[years.length - 1] || "";
+    const years = yearsInData(state.items);
+    if (!years.includes(chartYear)) chartYear = years[years.length - 1] || "";
+    let year = chartYear;
     const host = document.getElementById("month-chart");
     const note = document.getElementById("month-note");
     host.replaceChildren();
@@ -650,6 +977,7 @@
         button.addEventListener("click", () => {
           if (value === year) return;
           year = value;
+          chartYear = value;
           paintYearButtons();
           paintChart();
         });
@@ -718,6 +1046,19 @@
         const x = padX + i * slot + (slot - bw) / 2;
         const g = svgEl("g");
         g.style.cursor = "pointer";
+        const selected = bucket.key === filters.month;
+        if (selected) {
+          const band = svgEl("rect");
+          band.setAttribute("x", String(padX + i * slot));
+          band.setAttribute("y", "0");
+          band.setAttribute("width", String(slot));
+          band.setAttribute("height", String(H));
+          band.setAttribute("rx", "4");
+          band.setAttribute("fill", "#E6EDFF");
+          band.setAttribute("stroke", "#0B4BFF");
+          band.setAttribute("stroke-width", "1.5");
+          g.append(band);
+        }
         const tip = svgEl("title");
         tip.textContent = t().monthTip(Number(bucket.key.slice(5)));
         g.append(tip);
@@ -757,6 +1098,7 @@
         tick.setAttribute("text-anchor", "middle");
         tick.setAttribute("font-size", "11");
         tick.setAttribute("fill", bucket.future ? "#64748B" : "#334155");
+        if (selected) tick.setAttribute("font-weight", "700");
         tick.textContent = t().monthTick(Number(bucket.key.slice(5)));
         g.append(tick);
         const hit = svgEl("rect");
@@ -767,7 +1109,13 @@
         hit.setAttribute("fill", "transparent");
         g.append(hit);
         g.addEventListener("mouseenter", () => setActive(i));
-        g.addEventListener("click", () => setActive(i));
+        g.addEventListener("click", () => {
+          // Click selects that month as a filter; clicking the selected month clears it.
+          // Empty and upcoming months only show their detail line.
+          if (selected) setFilters({ month: "" });
+          else if (count > 0 && !bucket.future) setFilters({ month: bucket.key });
+          else setActive(i);
+        });
         svg.append(g);
         cols.push({ grow: count > 0 ? grow : null, label });
       });
@@ -817,7 +1165,8 @@
       data.forEach((bucket, i) => {
         if (bucket.items.length > 0) last = i;
       });
-      setActive(last);
+      const picked = data.findIndex((bucket) => bucket.key === filters.month);
+      setActive(picked >= 0 ? picked : last);
     }
 
     paintYearButtons();
@@ -896,49 +1245,14 @@
     return card;
   }
 
-  function renderIncidents(sorted, latest) {
-    const hostChips = document.getElementById("type-chips");
+  // `list` is already filtered and sorted. The single type chip row lives in the filter bar;
+  // #type-chips stays empty (and hidden by CSS).
+  function renderIncidents(list, latest) {
+    byId("type-chips").replaceChildren();
     const cards = document.getElementById("incident-cards");
     const tableWrap = document.getElementById("incident-table-wrap");
-    let filter = ALL;
-    const options = [
-      { value: ALL, label: t().all, count: sorted.length },
-      ...TYPE_ORDER.map((type) => ({
-        value: type,
-        label: typeName(type),
-        count: sorted.filter((item) => item.type === type).length,
-      })),
-    ];
-
-    function drawChips() {
-      hostChips.replaceChildren();
-      for (const option of options) {
-        const color = option.value === ALL ? "#0B4BFF" : (TYPE_COLORS[option.value] || "#0B4BFF");
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "chip";
-        button.style.setProperty("--chip", color);
-        button.style.setProperty("--ink-on", inkFor(color));
-        button.setAttribute("aria-pressed", option.value === filter ? "true" : "false");
-        if (option.value === filter) button.classList.add("is-on");
-        const dot = document.createElement("i");
-        dot.className = "dot";
-        button.append(dot, document.createTextNode(`${option.label} ${option.count}`));
-        button.addEventListener("click", () => {
-          filter = option.value;
-          drawChips();
-          drawRows();
-        });
-        hostChips.append(button);
-      }
-    }
-
-    function rows() {
-      return sorted.filter((item) => filter === ALL || item.type === filter);
-    }
 
     function drawRows() {
-      const list = rows();
       cards.replaceChildren();
       tableWrap.replaceChildren();
       if (!list.length) {
@@ -1005,7 +1319,6 @@
       tableWrap.append(table);
     }
 
-    drawChips();
     drawRows();
   }
 
@@ -1116,6 +1429,18 @@
     WA: "華盛頓州", WV: "西維吉尼亞州", WI: "威斯康辛州", WY: "懷俄明州",
   };
 
+  const STATE_EN = {
+    AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California", CO: "Colorado",
+    CT: "Connecticut", DE: "Delaware", DC: "District of Columbia", FL: "Florida", GA: "Georgia", HI: "Hawaii",
+    ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa", KS: "Kansas", KY: "Kentucky",
+    LA: "Louisiana", ME: "Maine", MD: "Maryland", MA: "Massachusetts", MI: "Michigan", MN: "Minnesota",
+    MS: "Mississippi", MO: "Missouri", MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire",
+    NJ: "New Jersey", NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota", OH: "Ohio",
+    OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
+    SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont", VA: "Virginia",
+    WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
+  };
+
   const MAP_COUNT_COLORS = ["#95CAFF", "#5B9DF5", "#0B4BFF", "#002C77", "#000F47"];
   const MAP_ZERO = "#E1E7F0";
   const MAP_URL = "data/geo/us-states-albers-10m.json";
@@ -1123,8 +1448,9 @@
 
   let geoPromise = null;
   let mapToken = 0;
-  let mapSelected = "";
   let unmappedOpen = false;
+  // Set by a map click, consumed by the next renderMap: { scroll, focus: { kind, code } }.
+  let mapIntent = null;
 
   const byId = (id) => document.getElementById(id);
 
@@ -1253,7 +1579,7 @@
     return svg;
   }
 
-  function drawMap(geo, items, language, latest) {
+  function drawMap(geo, items, language, latest, intent) {
     const L = I18N[language];
     const canvas = byId("map-canvas");
     const legend = byId("map-legend");
@@ -1278,7 +1604,8 @@
       status.hidden = false;
       return;
     }
-    if (mapSelected && !geo.states[mapSelected]) mapSelected = "";
+    // The selected state is the shared state filter; "unmapped" selects nothing on the map.
+    const selected = filters.state && geo.states[filters.state] ? filters.state : "";
 
     const levels = Math.max(1, Math.min(5, max));
     const palette = levels === 1
@@ -1319,11 +1646,11 @@
         "aria-pressed": "false",
         "data-state": code,
       });
-      p.addEventListener("click", () => toggleState(code));
+      p.addEventListener("click", () => toggleState(code, "path"));
       p.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " " || event.key === "Spacebar") {
           event.preventDefault();
-          toggleState(code);
+          toggleState(code, "path");
         }
       });
       // Keyboard focus ring is an overlay stroke (no browser bounding-box outline).
@@ -1383,7 +1710,7 @@
       const circle = (xy, attrs, code) => {
         const c = svgNode("circle", Object.assign({ cx: xy[0], cy: xy[1] }, attrs));
         withTitle(c, tip);
-        if (code && geo.states[code]) c.addEventListener("click", () => toggleState(code));
+        if (code && geo.states[code]) c.addEventListener("click", () => toggleState(code, ""));
         return c;
       };
       if (origin && dest) {
@@ -1504,7 +1831,7 @@
       const dot = document.createElement("i");
       dot.className = "dot";
       button.append(dot, document.createTextNode(`${nameOf(code)} ${counts[code]}`));
-      button.addEventListener("click", () => toggleState(code));
+      button.addEventListener("click", () => toggleState(code, "chip"));
       rank.append(button);
       chipFor[code] = button;
     }
@@ -1520,34 +1847,34 @@
     // ---- selection ----
     function applySelection(scroll) {
       for (const code of Object.keys(paths)) {
-        paths[code].setAttribute("aria-pressed", code === mapSelected ? "true" : "false");
+        paths[code].setAttribute("aria-pressed", code === selected ? "true" : "false");
       }
-      const outlineD = mapSelected && geo.states[mapSelected] ? geo.states[mapSelected].d : "";
+      const outlineD = selected ? geo.states[selected].d : "";
       outline.setAttribute("d", outlineD);
       outlineInner.setAttribute("d", outlineD);
       for (const code of Object.keys(chipFor)) {
-        const on = code === mapSelected;
+        const on = code === selected;
         chipFor[code].classList.toggle("is-on", on);
         chipFor[code].setAttribute("aria-pressed", on ? "true" : "false");
       }
       for (const mark of gMarks.querySelectorAll(".map-mark")) {
-        const hit = !mapSelected || (mark.getAttribute("data-states") || "").split(" ").includes(mapSelected);
+        const hit = !selected || (mark.getAttribute("data-states") || "").split(" ").includes(selected);
         mark.classList.toggle("is-dim", !hit);
       }
       selBox.replaceChildren();
-      if (!mapSelected) return;
-      const list = bySortDesc(entries.filter((e) => e.codes.includes(mapSelected)).map((e) => e.item));
+      if (!selected) return;
+      const list = bySortDesc(entries.filter((e) => e.codes.includes(selected)).map((e) => e.item));
       const head = document.createElement("div");
       head.className = "map-selected-head";
       const title = document.createElement("h3");
       title.className = "map-selected-title";
-      title.textContent = L.mapSelTitle(nameOf(mapSelected), list.length);
+      title.textContent = L.mapSelTitle(nameOf(selected), list.length);
       const clearBtn = document.createElement("button");
       clearBtn.type = "button";
       clearBtn.className = "chip";
       clearBtn.style.setProperty("--chip", "#0B4BFF");
       clearBtn.textContent = L.mapClear;
-      clearBtn.addEventListener("click", () => toggleState(mapSelected));
+      clearBtn.addEventListener("click", () => toggleState(selected, ""));
       head.append(title, clearBtn);
       selBox.append(head);
       if (!list.length) {
@@ -1566,15 +1893,27 @@
       }
     }
 
-    function toggleState(code) {
-      mapSelected = code === mapSelected ? "" : code;
-      applySelection(true);
+    // Writes the shared state filter. The map is rebuilt by setFilters, so the next draw
+    // is told to scroll to the selection and to put keyboard focus back on the control used.
+    function toggleState(code, kind) {
+      const clearing = code === selected;
+      mapIntent = { scroll: !clearing, focus: kind ? { kind, code } : null };
+      setFilters({ state: clearing ? "" : code });
+      // setFilters returns early when nothing changed, which would leave a stale intent.
+      mapIntent = null;
     }
 
-    applySelection(false);
+    applySelection(Boolean(intent && intent.scroll));
+    if (intent && intent.focus) {
+      const target = intent.focus.kind === "chip" ? chipFor[intent.focus.code] : paths[intent.focus.code];
+      if (target) target.focus({ preventScroll: true });
+    }
   }
 
-  function renderMap(items, language, latest) {
+  function renderMap(items, unmappedItems, language, latest) {
+    // Take the one-shot intent now so a failed or superseded draw cannot leave it behind.
+    const intent = mapIntent;
+    mapIntent = null;
     const token = ++mapToken;
     const L = I18N[language];
     const status = byId("map-status");
@@ -1583,7 +1922,7 @@
       status.textContent = text;
       status.hidden = !text;
     };
-    renderUnmapped(items, language, latest);
+    renderUnmapped(unmappedItems, language, latest);
     for (const id of ["map-canvas", "map-legend", "map-rank", "map-selected", "map-sr"]) {
       byId(id).replaceChildren();
     }
@@ -1600,22 +1939,35 @@
           return;
         }
         setStatus("");
-        drawMap(geo, items, language, latest);
+        drawMap(geo, items, language, latest, intent);
       })
       .catch(() => {
         if (token === mapToken) setStatus(L.mapUnavailable);
       });
   }
 
-  function renderAll() {
-    // Stop the previous carousel timer before it is rebuilt.
+  // Views that follow the shared filters. Called by setFilters and by renderAll; it never
+  // calls either of them, so it cannot loop. The ticker timer is torn down before rebuild and
+  // renderMap bumps mapToken, so late map fetches from a previous call are discarded.
+  function renderFilteredViews() {
     if (teardownTicker) {
       teardownTicker();
       teardownTicker = null;
     }
+    updateFilterBar();
+    const list = bySortDesc(filteredIncidentList());
+    // The pulse marker stays on the site-wide latest incident, not the latest match.
+    const latest = bySortDesc(state.items.filter((item) => INCIDENT_TYPES.includes(item.type)))[0] || null;
+    renderTicker(list.filter((item) => INCIDENT_TYPES.includes(item.type)).slice(0, 6));
+    // Selector views ignore their own dimension so the other months and states stay clickable.
+    renderMonthChart(filteredIncidentList("month"));
+    renderTypeBars(list);
+    renderMap(filters.state === "unmapped" ? list : filteredIncidentList("state"), list, lang, latest);
+    renderIncidents(list, latest);
+  }
+
+  function renderAll() {
     const { items, reports, meta } = state;
-    const sorted = bySortDesc(items);
-    const latestList = sorted.filter((item) => INCIDENT_TYPES.includes(item.type)).slice(0, 6);
     const claims = items.filter((item) => item.type === CLAIMS_TYPE).length;
     const summaryNode = document.getElementById("summary");
     const summaryText = t().summary(monthSpan(items), items.length, claims, reports.length);
@@ -1629,11 +1981,8 @@
 
     renderMetrics(items, meta.headlines);
     renderTrends(meta);
-    renderTicker(latestList);
-    renderMonthChart(items);
-    renderTypeBars(items);
-    renderMap(items, lang, latestList[0] || null);
-    renderIncidents(sorted, latestList[0] || null);
+    buildFilterBar();
+    renderFilteredViews();
     renderReports(reports);
     renderExtra(meta.extra_sources);
   }
@@ -1648,6 +1997,8 @@
       throw new Error(t().badFormat);
     }
     state = { items, reports, meta: meta || {} };
+    readFiltersFromUrl();
+    writeUrl(); // drops invalid or default filter params; leaves ?lang= as is
     renderAll();
 
     document.getElementById("loading").hidden = true;
