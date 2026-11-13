@@ -422,9 +422,9 @@ h3 {
 }
 
 .month-detail {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #CBD5E1;
 }
 
 .month-detail-title {
@@ -829,7 +829,73 @@ th:last-child { border-radius: 0 12px 0 0; }
 }
 
 /* ---- US incident map ---- */
-.map-canvas { margin-top: 12px; }
+/* Chart and map sit in true white cards (commit 1 left other panels on --panel). */
+#map-panel,
+.panel[aria-labelledby="h-month"] { background: #fff; }
+
+#map-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+#map-panel > h2,
+#map-panel > .note,
+#map-panel > .map-canvas,
+#map-panel > .map-legend,
+#map-panel > .map-unmapped,
+#map-panel > .map-rank,
+#map-panel > .map-selected { margin: 0; min-width: 0; }
+
+#map-panel > h2 { grid-area: title; }
+#map-panel > #map-status { grid-area: status; }
+#map-panel > .map-canvas { grid-area: canvas; }
+#map-panel > .map-legend { grid-area: legend; }
+#map-panel > .map-unmapped { grid-area: unmapped; }
+#map-panel > .map-rank { grid-area: rank; }
+#map-panel > .map-selected { grid-area: selected; }
+#map-panel > #map-sr { grid-area: selected; }
+
+#map-panel {
+  grid-template-areas:
+    "title"
+    "status"
+    "canvas"
+    "legend"
+    "unmapped"
+    "rank"
+    "selected";
+}
+
+@media (min-width: 900px) {
+  #map-panel {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    grid-template-rows: auto auto auto auto 1fr auto;
+    column-gap: 24px;
+    grid-template-areas:
+      "title    title"
+      "status   status"
+      "canvas   legend"
+      "canvas   unmapped"
+      "canvas   rank"
+      "selected selected";
+  }
+}
+
+/* Empty regions (map failed or has nothing to plot) must not leave blank boxes or gaps. */
+#map-panel > .map-canvas:empty,
+#map-panel > .map-legend:empty,
+#map-panel > .map-rank:empty,
+#map-panel > .map-selected:empty { display: none; }
+
+.map-canvas {
+  margin-top: 12px;
+  padding: 12px;
+  background: #F6F8FB;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
 
 .map-canvas svg {
   display: block;
@@ -857,13 +923,16 @@ th:last-child { border-radius: 0 12px 0 0; }
 .map-state:focus-visible { outline: none; }
 
 
-.map-outline {
+/* Selection: dark outer stroke with a white inner stroke on top. */
+.map-outline,
+.map-outline-inner {
   fill: none;
-  stroke: var(--bright);
-  stroke-width: 3.2;
   stroke-linejoin: round;
   pointer-events: none;
 }
+
+.map-outline { stroke: var(--cobalt); stroke-width: 5.2; }
+.map-outline-inner { stroke: #fff; stroke-width: 2; }
 
 .map-count {
   font-family: var(--font-figure);
@@ -919,6 +988,16 @@ th:last-child { border-radius: 0 12px 0 0; }
 
 .map-unmapped:empty { display: none; }
 .map-unmapped .note { margin: 0; }
+
+/* Secondary button: white, thin border; never filled. */
+.map-unmapped-toggle,
+.map-unmapped-toggle:hover {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid #CBD5E1;
+}
+
+.map-unmapped-toggle:hover { border-color: var(--cobalt); color: var(--cobalt); }
 .map-unmapped .map-list { width: 100%; }
 .map-unmapped .map-list[hidden] { display: none; }
 
@@ -937,7 +1016,7 @@ th:last-child { border-radius: 0 12px 0 0; }
 
 .map-selected-title {
   margin: 0;
-  color: var(--cobalt);
+  color: #002C77;
   font-family: var(--font-serif);
   font-size: 1.125rem;
   font-weight: 600;
@@ -952,8 +1031,10 @@ th:last-child { border-radius: 0 12px 0 0; }
 
 @media (max-width: 640px) {
   .map-count { font-size: 26px; }
-  .map-outline { stroke-width: 5; }
+  .map-outline { stroke-width: 7.5; }
+  .map-outline-inner { stroke-width: 3; }
   .map-state { stroke-width: 1.2; }
+  .map-canvas { padding: 8px; }
 }
 
 @media (max-width: 480px) {

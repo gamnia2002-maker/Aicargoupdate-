@@ -702,7 +702,7 @@
       axis.setAttribute("x2", String(W - padX));
       axis.setAttribute("y1", String(H - bottom));
       axis.setAttribute("y2", String(H - bottom));
-      axis.setAttribute("stroke", "#95CAFF");
+      axis.setAttribute("stroke", "#CBD5E1");
       svg.append(axis);
 
       const detail = document.createElement("div");
@@ -754,7 +754,7 @@
         tick.setAttribute("y", String(H - 8));
         tick.setAttribute("text-anchor", "middle");
         tick.setAttribute("font-size", "11");
-        tick.setAttribute("fill", bucket.future ? "#7A90B0" : "#334155");
+        tick.setAttribute("fill", bucket.future ? "#64748B" : "#334155");
         tick.textContent = t().monthTick(Number(bucket.key.slice(5)));
         g.append(tick);
         const hit = svgEl("rect");
@@ -1115,7 +1115,7 @@
   };
 
   const MAP_COUNT_COLORS = ["#95CAFF", "#5B9DF5", "#0B4BFF", "#002C77", "#000F47"];
-  const MAP_ZERO = "#E8EEF6";
+  const MAP_ZERO = "#E1E7F0";
   const MAP_URL = "data/geo/us-states-albers-10m.json";
   const CITY_URL = "data/geo/city_coords.json";
 
@@ -1357,8 +1357,11 @@
         gNumbers.append(label);
       }
     }
+    // Selection = dark outer stroke (#002C77) + white inner stroke, so it reads on both the
+    // darkest states and the pale ones. Both paths always receive the same `d`.
     const outline = svgNode("path", { class: "map-outline", d: "" });
-    gOutline.append(outline);
+    const outlineInner = svgNode("path", { class: "map-outline-inner", d: "" });
+    gOutline.append(outline, outlineInner);
 
     // Routes and points, oldest first so newer incidents draw on top.
     const seenPoints = {};
@@ -1388,21 +1391,35 @@
         if (dist >= 2) {
           const cx = (origin.xy[0] + dest.xy[0]) / 2;
           const cy = (origin.xy[1] + dest.xy[1]) / 2 - dist * 0.25;
+          const d = `M${origin.xy[0]} ${origin.xy[1]} Q${cx} ${cy} ${dest.xy[0]} ${dest.xy[1]}`;
+          // Light halo underneath keeps dark routes (e.g. 運輸竊盜) visible over dark states.
+          const halo = svgNode("path", {
+            d,
+            class: "map-route-halo",
+            fill: "none",
+            stroke: "#fff",
+            "stroke-opacity": 0.85,
+            "stroke-width": 4.5,
+            "stroke-linecap": "round",
+          });
           const line = svgNode("path", {
-            d: `M${origin.xy[0]} ${origin.xy[1]} Q${cx} ${cy} ${dest.xy[0]} ${dest.xy[1]}`,
+            d,
             class: "map-route",
             fill: "none",
             stroke: color,
             "stroke-width": 2,
             "stroke-linecap": "round",
           });
-          if (origin.approx || dest.approx) line.setAttribute("stroke-dasharray", "6 4");
+          if (origin.approx || dest.approx) {
+            halo.setAttribute("stroke-dasharray", "6 4");
+            line.setAttribute("stroke-dasharray", "6 4");
+          }
           withTitle(line, tip);
-          mark.append(line);
+          mark.append(halo, line);
         }
         mark.append(
           circle(origin.xy, { r: 4.5, fill: "#fff", stroke: color, "stroke-width": 2 }, g.origin.state),
-          circle(dest.xy, { r: 4.5, fill: color, stroke: "#fff", "stroke-width": 1 }, g.dest.state),
+          circle(dest.xy, { r: 4.5, fill: color, stroke: "#fff", "stroke-width": 1.5 }, g.dest.state),
         );
       } else if (g.point) {
         const p = resolveEnd(geo, g.point);
@@ -1503,7 +1520,9 @@
       for (const code of Object.keys(paths)) {
         paths[code].setAttribute("aria-pressed", code === mapSelected ? "true" : "false");
       }
-      outline.setAttribute("d", mapSelected && geo.states[mapSelected] ? geo.states[mapSelected].d : "");
+      const outlineD = mapSelected && geo.states[mapSelected] ? geo.states[mapSelected].d : "";
+      outline.setAttribute("d", outlineD);
+      outlineInner.setAttribute("d", outlineD);
       for (const code of Object.keys(chipFor)) {
         const on = code === mapSelected;
         chipFor[code].classList.toggle("is-on", on);
