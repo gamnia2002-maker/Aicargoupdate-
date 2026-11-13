@@ -78,7 +78,7 @@
       monthsUnknown: "月份未明",
       monthRange: (a, b) => `${a} 至 ${b}`,
       summary: (span, n, claims, reports) =>
-        `彙整與 AI 伺服器、GPU 與晶片、資料中心設備相關的運輸事故。${span ? `時間涵蓋 ${span}。` : ""}收錄 ${n} 則事故（含 ${claims} 則理賠與訴訟），另整理 ${reports} 則產業報告與保險市場動態，每則均附原始來源連結。`,
+        `彙整與 AI 伺服器、GPU 與晶片、資料中心設備相關的運輸事故。本站每週自動彙整並更新最新的公開資訊。收錄 ${n} 則事故（含 ${claims} 則理賠與訴訟），另整理 ${reports} 則產業報告與保險市場動態，每則均附原始來源連結。`,
       tickerRole: "輪播",
       tickerLabel: "最新事故輪播",
       noIncidents: "目前沒有事故。",
@@ -163,7 +163,7 @@
       monthsUnknown: "Months not specified",
       monthRange: (a, b) => `${a} to ${b}`,
       summary: (span, n, claims, reports) =>
-        `A digest of transit incidents involving AI servers, GPUs and chips, and data center equipment. ${span ? `Coverage runs ${span}. ` : ""}It lists ${n} ${plural(n, "incident", "incidents")} (including ${claims} claims and litigation ${plural(claims, "matter", "matters")}), plus ${reports} industry ${plural(reports, "report", "reports")} and insurance market ${plural(reports, "update", "updates")}, each linked to its original source.`,
+        `A digest of transit incidents involving AI servers, GPUs and chips, and data center equipment. This site is compiled and updated automatically every week with the latest public information. It lists ${n} ${plural(n, "incident", "incidents")} (including ${claims} claims and litigation ${plural(claims, "matter", "matters")}), plus ${reports} industry ${plural(reports, "report", "reports")} and insurance market ${plural(reports, "update", "updates")}, each linked to its original source.`,
       tickerRole: "carousel",
       tickerLabel: "Latest incidents carousel",
       noIncidents: "There are no incidents at the moment.",
@@ -459,8 +459,6 @@
     for (const tile of tiles) {
       const card = document.createElement("article");
       card.className = "metric";
-      card.style.background = tile.color;
-      card.style.color = inkFor(tile.color);
       const value = document.createElement("div");
       value.className = "value";
       value.textContent = "0";

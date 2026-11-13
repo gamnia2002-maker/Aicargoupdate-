@@ -206,18 +206,23 @@ h3 {
 .metric {
   border-radius: 12px;
   padding: 16px;
-  border: 1px solid var(--border);
+  border: 1px solid #E3E8EF;
+  background: #fff;
+  color: #0F172A;
   min-height: 118px;
+  min-width: 0;
+  overflow-wrap: anywhere;
   font-family: var(--font-figure);
   letter-spacing: 0;
 }
 
 .metric .value {
   font-family: var(--font-figure);
-  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  font-size: clamp(1.45rem, 6.2vw, 1.9rem);
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
+  color: #002C77;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
 }
@@ -233,7 +238,7 @@ h3 {
   margin-top: 2px;
   font-size: 0.75rem;
   line-height: 1.45;
-  opacity: 0.88;
+  color: #334155;
 }
 
 .ticker {
@@ -782,6 +787,7 @@ th:last-child { border-radius: 0 12px 0 0; }
 
 @media (min-width: 900px) {
   .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .metric .value { font-size: clamp(1.7rem, 2.6vw, 2.2rem); }
   main.wrap:not([hidden]) {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
