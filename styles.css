@@ -11,10 +11,10 @@
   --line: #E3E8EF;
   --white: #ffffff;
   --radius: 16px;
-  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-sans: "IBM Plex Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   --font-serif: var(--font-sans);
-  --font-figure: "Inter", system-ui, "Noto Sans TC", sans-serif;
-  --font: "Inter", system-ui, "Noto Sans TC", sans-serif;
+  --font-figure: "IBM Plex Sans", "Noto Sans TC", sans-serif;
+  --font: "IBM Plex Sans", "Noto Sans TC", sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --tick: 4500ms;
 }
@@ -29,8 +29,9 @@ body {
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.7;
-  letter-spacing: 0.01em;
+  line-height: 1.75;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
   font-synthesis: none;
   color: var(--ink);
   background: #fff;
@@ -38,7 +39,8 @@ body {
 
 html[lang="en"] body {
   font-family: var(--font);
-  line-height: 1.55;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
 }
 
 ::selection {
@@ -120,10 +122,15 @@ h1 {
   margin: 0 0 10px;
   color: var(--cobalt);
   font-family: inherit;
-  font-size: clamp(1.7rem, 4.4vw, 2.55rem);
+  font-size: clamp(1.625rem, 3.6vw, 2.35rem);
   font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: 0.02em;
+  line-height: 1.28;
+  letter-spacing: 0;
+}
+
+html[lang="en"] h1 {
+  letter-spacing: -0.022em;
+  line-height: 1.2;
 }
 
 .summary {
@@ -131,8 +138,8 @@ h1 {
   max-width: 68rem;
   color: var(--muted);
   font-size: 1.0625rem;
-  font-weight: 500;
-  line-height: 1.75;
+  font-weight: 400;
+  line-height: 1.8;
 }
 
 .updated {
@@ -162,16 +169,16 @@ h2 {
   margin: 0 0 14px;
   color: var(--ink);
   font-family: inherit;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  line-height: 1.45;
-  letter-spacing: 0.02em;
+  line-height: 1.35;
+  letter-spacing: 0;
 }
 
 h3 {
   font-family: inherit;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
 }
 
 .note {
@@ -572,10 +579,10 @@ h3 {
 .link-card .title {
   margin: 8px 0 0;
   font-family: inherit;
-  font-size: 1.02rem;
+  font-size: 1.0625rem;
   font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
+  line-height: 1.4;
+  letter-spacing: 0;
   color: var(--ink);
 }
 
