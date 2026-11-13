@@ -786,6 +786,7 @@ th:last-child { border-radius: 0 12px 0 0; }
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: 16px;
+    align-items: start;
   }
   main.wrap > * { grid-column: 1 / -1; }
   main.wrap > section:has(#ticker) { grid-column: span 7; }
@@ -793,7 +794,7 @@ th:last-child { border-radius: 0 12px 0 0; }
 }
 
 @media (max-width: 640px) {
-  .wrap { width: min(1120px, calc(100% - 20px)); }
+  .wrap { width: min(1120px, calc(100% - 32px)); }
   .site-header { padding-top: 22px; }
   .panel { padding: 16px; border-radius: 16px; margin: 12px 0; }
   .ticker { padding: 16px; }
