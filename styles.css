@@ -111,7 +111,8 @@ html[lang="en"] body {
 .lang-switch button:focus-visible { outline-color: var(--cobalt); outline-offset: -3px; }
 
 @media (min-width: 641px) {
-  .header-wrap h1 { padding-right: 140px; }
+  .header-wrap h1,
+  .header-wrap .tagline { padding-right: 140px; }
 }
 
 @media (max-width: 640px) {
@@ -119,7 +120,7 @@ html[lang="en"] body {
 }
 
 h1 {
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   color: var(--cobalt);
   font-family: inherit;
   font-size: clamp(1.625rem, 3.6vw, 2.35rem);
@@ -131,6 +132,15 @@ h1 {
 html[lang="en"] h1 {
   letter-spacing: -0.022em;
   line-height: 1.2;
+}
+
+.tagline {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .summary {

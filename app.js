@@ -31,7 +31,9 @@
   const I18N = {
     zh: {
       htmlLang: "zh-Hant",
-      title: "AI 產品運輸保險事故新聞彙整",
+      title: "AI 貨損紀實",
+      tagline: "AI 產品運輸保險事故新聞彙整",
+      pageTitle: "AI 貨損紀實｜AI Cargo Loss Ledger",
       description: "彙整與 AI 伺服器、GPU 與晶片、資料中心設備相關的運輸事故，以及產業報告與保險市場動態。",
       skip: "跳至內容",
       loading: "資料載入中…",
@@ -110,7 +112,9 @@
     },
     en: {
       htmlLang: "en",
-      title: "AI Cargo Transit Insurance Incident News Digest",
+      title: "AI Cargo Loss Ledger",
+      tagline: "AI Cargo Transit Insurance Incident News Digest",
+      pageTitle: "AI 貨損紀實｜AI Cargo Loss Ledger",
       description: "A digest of transit incidents involving AI servers, GPUs and chips, and data center equipment, plus industry reports and insurance market developments.",
       skip: "Skip to content",
       loading: "Loading data...",
@@ -251,7 +255,7 @@
   function applyStaticText() {
     const dict = t();
     document.documentElement.lang = dict.htmlLang;
-    document.title = dict.title;
+    document.title = dict.pageTitle;
     for (const node of document.querySelectorAll("[data-i18n]")) {
       const value = dict[node.dataset.i18n];
       if (typeof value === "string") node.textContent = value;
