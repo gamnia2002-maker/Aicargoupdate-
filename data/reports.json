@@ -1,5 +1,41 @@
 [
   {
+    "sort": "2026-11-11",
+    "date": "2026-11-11",
+    "kind": "產業報告",
+    "scope": "全球（亞太觀點）",
+    "title": "TAPA APAC：從晶片貨物竊盜到資料中心入侵，AI 供應鏈的保全風險與對策",
+    "value": "引用 Oakland 6 板 NVIDIA 硬體失竊案（約 1,140 萬美元，媒體估計值）",
+    "summary": "TAPA APAC 董事 Alan Liu 撰文指出，AI 伺服器、GPU 與資料中心已成為高價值資產集中點，風險從傳統貨物竊盜擴大到運輸詐欺、工地未經授權進入、抗議與蓄意破壞。文中以 Oakland 運往德州途中失蹤的 6 板 NVIDIA 硬體（約 1,140 萬美元，媒體估計值）及阿姆斯特丹 AI 資料中心工地抗議為例，提醒裝卸、轉運、臨時倉儲、轉包與最終交付是主要弱點。建議依 TAPA FSR（倉儲設施）與 TSR（陸運）建立合格承運人名單、司機與車輛身分查核、提貨指示驗證、路線風險評估與異常停留警示，並在出險時立即報案、保全證據、通知保險人及追蹤貨物。",
+    "site": "TAPA APAC",
+    "url": "https://tapa-apac.org/from-chip-cargo-theft-to-data-centre-intrusions-security-risks-and-responses-across-the-ai-supply-chain/",
+    "en": {
+      "date": "Nov 11, 2026",
+      "scope": "Global (Asia Pacific perspective)",
+      "title": "TAPA APAC: from chip cargo theft to data centre intrusions, security risks and responses across the AI supply chain",
+      "value": "Cites the Oakland theft of six pallets of NVIDIA hardware (about US$11.4 million, media estimate)",
+      "summary": "TAPA APAC board member Alan Liu writes that AI servers, GPUs and data centres have become concentrations of high-value assets, and that exposure is widening from conventional cargo theft to transport fraud, unauthorised site access, protests and deliberate sabotage. Citing the six pallets of NVIDIA hardware that disappeared in transit from Oakland to Texas (about US$11.4 million, media estimate) and a protest at an AI data centre construction site in Amsterdam, the article identifies loading, transshipment, temporary storage, subcontracting and final delivery as the main points of vulnerability. It recommends applying TAPA FSR (facilities) and TSR (trucking) through approved carrier lists, driver and vehicle identity checks, authenticated pickup instructions, route risk assessment and alerts for unusual stops, and, after a loss, prompt police reporting, evidence preservation, notice to insurers and cargo tracing."
+    }
+  },
+  {
+    "sort": "2026-11-09",
+    "date": "2026-11-09",
+    "kind": "保險市場",
+    "scope": "美國",
+    "title": "Insurance Journal：貨物竊盜創新高，部分保險人調漲費率、提高自負額並增加除外條款",
+    "value": "部分保險人將竊盜自標準貨物保單中移除，需另行投保",
+    "summary": "Insurance Journal 11 月 9 日專題指出，美國貨物竊盜升至新高，部分保險人因此調漲費率、提高自負額並增加竊盜相關除外條款，有些甚至將竊盜保障自標準貨物保單中移除，要求被保險人另行購買。SPG Cargo & Logistics 的 Scott Cornell 表示，竊盜爆發後業界立即出現更多竊盜除外，缺乏防損措施的風險最可能被加費或除外；他也提醒傳統直接竊盜仍占全部貨物竊盜約七成，貨物停放的卡車休息站、甩櫃場與倉庫外場地風險最高。他建議先建立作業程序與教育訓練、審慎查核承運夥伴，再導入鎖具與查核平台等技術，並由經紀人將被保險人的防損投資完整呈現給核保人，以爭取較佳條件與費率。",
+    "site": "Insurance Journal",
+    "url": "https://www.insurancejournal.com/magazines/mag-features/2026/11/09/891544.htm",
+    "en": {
+      "date": "Nov 9, 2026",
+      "scope": "United States",
+      "title": "Insurance Journal: record cargo theft leads some insurers to raise rates and deductibles and add exclusions",
+      "value": "Some insurers have removed theft from standard cargo policies, requiring separate cover",
+      "summary": "An Insurance Journal feature published Nov 9 reports that cargo theft in the United States has reached record levels, prompting some insurers to raise rates, increase deductibles and add theft exclusions, with some removing theft cover from standard cargo policies and requiring insureds to buy it separately. Scott Cornell of SPG Cargo & Logistics said theft exclusions increased quickly across the market, and risks without sound loss mitigation are the most likely to see higher rates, higher deductibles and exclusions. He noted that straight theft still accounts for about 70% of all cargo theft, with the highest exposure where freight sits, such as truck stops, drop lots and areas outside warehouses. He recommends establishing procedures, training and careful carrier vetting before adding technology such as hard locking devices and vetting platforms, and encourages brokers to present insureds' loss prevention investments to underwriters to support better terms and pricing."
+    }
+  },
+  {
     "sort": "2026-11-04",
     "date": "2026-11-04",
     "kind": "產業報告",
