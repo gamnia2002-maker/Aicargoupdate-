@@ -16,10 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,6 +30,19 @@ jobs:
         with:
           path: .
           include-hidden-files: true
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # upload-pages-artifact and deploy-pages in one job can list zero
+      # artifacts. A separate job is not always enough on 24 Nov 2026, so wait
+      # before the lookup.
+      - name: Wait for the artifact to be listed
+        run: sleep 25
 
       - name: Deploy to GitHub Pages
         id: deployment
